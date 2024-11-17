@@ -13,36 +13,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 
-<AnchorPane prefHeight="543.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.AdminController">
+<AnchorPane prefHeight="632.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.AdminController">
     <children>
         <!-- Título -->
         <Label layoutX="20" layoutY="20" style="-fx-font-size: 18px;" text="Panel de Administrador" />
 
         <!-- TabPane principal -->
-        <TabPane fx:id="adminTabPane" layoutX="20" layoutY="60" prefHeight="400" prefWidth="760">
+        <TabPane fx:id="adminTabPane" layoutX="20" layoutY="60" prefHeight="503.0" prefWidth="843.0">
    <tabs>
                <!-- Pestaña de Productos -->
-               <Tab text="Productos">
+               <Tab closable="false" text="Productos">
                   <content>
                       <AnchorPane>
                          <children>
                              <TableView fx:id="productosTable" layoutX="10" layoutY="10" prefHeight="300" prefWidth="720">
                                  <columns>
+                                     <TableColumn fx:id="imagenColumn" prefWidth="100" text="Imagen" />
                                      <TableColumn fx:id="nombreColumn" prefWidth="180" text="Nombre" />
                                      <TableColumn fx:id="categoriaColumn" prefWidth="180" text="Categoría" />
                                      <TableColumn fx:id="estadoColumn" prefWidth="120" text="Estado" />
                                      <TableColumn fx:id="precioColumn" prefWidth="120" text="Precio" />
                                  </columns>
                              </TableView>
-                             <Button layoutX="10" layoutY="320" onAction="#handleEliminarProducto" text="Eliminar Producto" />
                          </children>
                       </AnchorPane>
                   </content>
                </Tab>
    
                <!-- Pestaña de Usuarios -->
-               <Tab text="Usuarios">
-      <content>
+               <Tab closable="false" text="Usuarios">
+                   <content>
                       <AnchorPane>
                          <children>
                              <TableView fx:id="usuariosTable" layoutX="10" layoutY="10" prefHeight="300" prefWidth="720">
@@ -66,7 +66,7 @@
                </Tab>
    
                <!-- Pestaña de Estadísticas -->
-               <Tab text="Estadísticas">
+               <Tab closable="false" text="Estadísticas">
       <content>
                       <AnchorPane>
                          <children>
@@ -78,6 +78,5 @@
                </Tab>
    </tabs>
         </TabPane>
-      <ImageView fitHeight="234.0" fitWidth="229.0" layoutX="809.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

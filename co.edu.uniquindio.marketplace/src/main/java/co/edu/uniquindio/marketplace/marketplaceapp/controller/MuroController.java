@@ -8,10 +8,14 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.util.Optional;
 
@@ -46,11 +50,18 @@ public class MuroController {
     @FXML
     public void initialize() {
         // Configuración de columnas
-        imagenColumn.setCellValueFactory(cellData -> {
+         imagenColumn.setCellValueFactory(cellData -> {
             ImageView imageView = new ImageView();
             imageView.setFitHeight(50); // Altura de las imágenes
             imageView.setFitWidth(50);  // Ancho de las imágenes
-            imageView.setImage(new Image(cellData.getValue().getImagenPath())); // Obtener la URL de la imagen
+
+            // Verificar si el producto tiene una imagen válida
+            Image image = cellData.getValue().getImagenPath(); // Obtener el objeto Image directamente
+            if (image != null) {
+                imageView.setImage(image);
+            } else {
+                System.err.println("La imagen es nula para el producto: " + cellData.getValue().getNombre());
+            }
             return new ReadOnlyObjectWrapper<>(imageView);
         });
 
@@ -82,12 +93,18 @@ public class MuroController {
         Producto seleccionado = muroTable.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
             seleccionado.agregarLike(vendedorActual.getNombre());
+
+            // Buscar al propietario del producto y enviarle una notificación
+            Vendedor propietario = modelFactory.getRedSocial().buscarVendedorPorProducto(seleccionado);
+            if (propietario != null && !propietario.equals(vendedorActual)) {
+                enviarNotificacion(propietario, "Me Gusta", vendedorActual.getNombre() + " le dio me gusta a tu producto: " + seleccionado.getNombre());
+            }
+
             cargarMuro();
         } else {
             mostrarAlerta("Advertencia", "Debe seleccionar un producto para dar Me Gusta", Alert.AlertType.WARNING);
         }
     }
-
     @FXML
     public void handleAgregarComentario() {
         Producto seleccionado = muroTable.getSelectionModel().getSelectedItem();
@@ -101,6 +118,13 @@ public class MuroController {
             resultado.ifPresent(texto -> {
                 Comentario comentario = new Comentario(texto, vendedorActual.getNombre());
                 seleccionado.agregarComentario(comentario);
+
+                // Buscar al propietario del producto y enviarle una notificación
+                Vendedor propietario = modelFactory.getRedSocial().buscarVendedorPorProducto(seleccionado);
+                if (propietario != null && !propietario.equals(vendedorActual)) {
+                    enviarNotificacion(propietario, "Comentario", vendedorActual.getNombre() + " comentó en tu producto: " + seleccionado.getNombre());
+                }
+
                 cargarMuro();
             });
         } else {
@@ -119,5 +143,26 @@ public class MuroController {
     public void setVendedor(Vendedor vendedor) {
         productosMuro.setAll(vendedor.getProductos());
         muroTable.setItems(productosMuro);
+    }
+    private void enviarNotificacion(Vendedor vendedor, String tipo, String mensaje) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Notificaciones.fxml"));
+            AnchorPane pane = loader.load();
+
+            // Obtener el controlador de la ventana de notificaciones
+            NotificacionesController controller = loader.getController();
+
+            // Agregar la notificación al controlador
+            controller.agregarNotificacion(tipo, mensaje);
+
+            // Crear y mostrar la nueva ventana
+            Stage stage = new Stage();
+            stage.setTitle("Notificaciones para " + vendedor.getNombre());
+            stage.setScene(new Scene(pane));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

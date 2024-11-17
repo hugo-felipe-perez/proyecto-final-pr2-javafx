@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.Button?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MuroController">
+
+<AnchorPane prefHeight="425.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MuroController">
     <children>
-        <Label text="Muro de Productos" layoutX="20" layoutY="20"/>
-        <TableView fx:id="muroTable" layoutX="20" layoutY="50" prefWidth="600" prefHeight="300">
+        <Label layoutX="20" layoutY="20" text="Muro de Productos" />
+        <TableView fx:id="muroTable" layoutX="20" layoutY="50" prefHeight="300" prefWidth="600">
             <columns>
-                <TableColumn fx:id="imagenColumn" text="Imagen"/>
-                <TableColumn fx:id="nombreColumn" text="Producto"/>
-                <TableColumn fx:id="categoriaColumn" text="Categoría"/>
-                <TableColumn fx:id="estadoColumn" text="Estado"/>
-                <TableColumn fx:id="likesColumn" text="Likes"/>
-                <TableColumn fx:id="comentariosColumn" text="Comentarios"/>
+                <TableColumn fx:id="imagenColumn" text="Imagen" />
+                <TableColumn fx:id="nombreColumn" text="Producto" />
+                <TableColumn fx:id="categoriaColumn" text="Categoría" />
+                <TableColumn fx:id="estadoColumn" text="Estado" />
+                <TableColumn fx:id="likesColumn" text="Likes" />
+                <TableColumn fx:id="comentariosColumn" text="Comentarios" />
             </columns>
         </TableView>
-        <Button text="Dar Me Gusta" layoutX="20" layoutY="370" onAction="#handleDarMeGusta"/>
-        <Button text="Agregar Comentario" layoutX="150" layoutY="370" onAction="#handleAgregarComentario"/>
+        <Button layoutX="20" layoutY="370" onAction="#handleDarMeGusta" text="Dar Me Gusta" />
+        <Button layoutX="414.0" layoutY="370.0" onAction="#handleAgregarComentario" text="Agregar Comentario" />
     </children>
 </AnchorPane>

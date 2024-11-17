@@ -112,15 +112,18 @@ public class ProductosController {
             // Validaciones
             String nombre = nombreField.getText();
             String categoria = categoriaField.getText();
-            String imagenPath = imagenPathField.getText();
+            String imagenPath = imagenPathField.getText(); // Obtiene la ruta como String
             double precio = Double.parseDouble(precioField.getText());
 
             if (nombre.isEmpty() || categoria.isEmpty() || imagenPath.isEmpty()) {
                 throw new IllegalArgumentException("Todos los campos son obligatorios.");
             }
 
+            // Crear objeto Image
+            Image imagen = new Image("file:" + imagenPath);
+
             // Crear y agregar producto
-            Producto producto = new Producto(nombre, categoria, precio, "Publicado", imagenPath);
+            Producto producto = new Producto(nombre, categoria, precio, "Publicado", imagen);
             vendedorActual.agregarProducto(producto);
             cargarProductos();
 

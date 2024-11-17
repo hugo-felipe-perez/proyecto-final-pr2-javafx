@@ -12,6 +12,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -21,8 +23,15 @@ public class LoginController {
 
     @FXML
     private PasswordField txtContrasena;
+    @FXML
+    private ImageView backgroundImage;
 
-
+    @FXML
+    public void initialize() {
+        // Configurar la imagen de fondo
+        Image background = new Image(getClass().getResource("/images/login.png").toExternalForm());
+        backgroundImage.setImage(background);
+    }
     @FXML
     public void handleLogin() {
         String nombreUsuario = txtUsuario.getText();

@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ProductosController">
+<AnchorPane prefHeight="477.0" prefWidth="942.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ProductosController">
     <children>
-        <Label text="Productos" layoutX="20" layoutY="20"/>
-        <TableView fx:id="productosTable" layoutX="20" layoutY="50" prefWidth="600" prefHeight="300">
+        <Label layoutX="20" layoutY="20" text="Productos" />
+        <TableView fx:id="productosTable" layoutX="20" layoutY="50" prefHeight="300" prefWidth="600">
             <columns>
-                <TableColumn fx:id="nombreColumn" text="Producto"/>
-                <TableColumn fx:id="categoriaColumn" text="Categoría"/>
-                <TableColumn fx:id="precioColumn" text="Precio"/>
-                <TableColumn fx:id="imagenColumn" text="Imagen"/>
+                <TableColumn fx:id="nombreColumn" text="Producto" />
+                <TableColumn fx:id="categoriaColumn" text="Categoría" />
+                <TableColumn fx:id="precioColumn" text="Precio" />
+                <TableColumn fx:id="imagenColumn" text="Imagen" />
             </columns>
         </TableView>
-        <Button text="Seleccionar Imagen" layoutX="20" layoutY="370" onAction="#handleSeleccionarImagen"/>
-        <Button text="Publicar Producto" layoutX="150" layoutY="370" onAction="#handlePublicarProducto"/>
-        <Button text="Eliminar Producto" layoutX="300" layoutY="370" onAction="#handleEliminarProducto"/>
-        <TextField fx:id="nombreField" layoutX="20" layoutY="410" promptText="Nombre del Producto"/>
-        <TextField fx:id="categoriaField" layoutX="150" layoutY="410" promptText="Categoría"/>
-        <TextField fx:id="precioField" layoutX="300" layoutY="410" promptText="Precio"/>
-        <TextField fx:id="imagenPathField" layoutX="450" layoutY="410" promptText="Ruta de Imagen"/>
-        <Label fx:id="mensajeError" layoutX="20" layoutY="450" textFill="red"/>
+        <Button layoutX="20" layoutY="370" onAction="#handleSeleccionarImagen" text="Seleccionar Imagen" />
+        <Button layoutX="150" layoutY="370" onAction="#handlePublicarProducto" text="Publicar Producto" />
+        <Button layoutX="300" layoutY="370" onAction="#handleEliminarProducto" text="Eliminar Producto" />
+        <TextField fx:id="nombreField" layoutX="20" layoutY="410" promptText="Nombre del Producto" />
+        <TextField fx:id="categoriaField" layoutX="150" layoutY="410" promptText="Categoría" />
+        <TextField fx:id="precioField" layoutX="300" layoutY="410" promptText="Precio" />
+        <TextField fx:id="imagenPathField" layoutX="450" layoutY="410" promptText="Ruta de Imagen" />
+        <Label fx:id="mensajeError" layoutX="20" layoutY="450" textFill="red" />
+      <ImageView fitHeight="176.0" fitWidth="224.0" layoutX="680.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

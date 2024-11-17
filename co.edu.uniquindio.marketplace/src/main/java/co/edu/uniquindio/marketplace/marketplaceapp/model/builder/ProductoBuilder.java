@@ -1,13 +1,14 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.model.builder;
 
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Producto;
+import javafx.scene.image.Image;
 
 public class ProductoBuilder {
     private String nombre;
     private String categoria;
     private double precio;
     private String estado;
-    private String imagenPath;
+    private Image imagenPath;
 
     public ProductoBuilder setNombre(String nombre) {
         this.nombre = nombre;
@@ -29,7 +30,7 @@ public class ProductoBuilder {
         return this;
     }
 
-    public ProductoBuilder setImagenPath(String imagenPath) {
+    public ProductoBuilder setImagenPath(Image imagenPath) {
         this.imagenPath = imagenPath;
         return this;
     }

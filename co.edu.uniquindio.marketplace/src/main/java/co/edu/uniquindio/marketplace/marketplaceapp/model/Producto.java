@@ -1,6 +1,7 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.model;
 
 import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ public class Producto {
     private double precio;
     private String estado;
     private LocalDateTime fechaPublicacion;
-    private String imagenPath; // Ruta de la imagen
+    private Image imagenPath; // Ruta de la imagen
     private List<String> likes;
     private List<Comentario> comentarios;
 
     // Constructor con imagenPath
-    public Producto(String nombre, String categoria, double precio, String estado, String imagenPath) {
+    public Producto(String nombre, String categoria, double precio, String estado, Image imagenPath) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
@@ -27,6 +28,7 @@ public class Producto {
         this.likes = new ArrayList<>();
         this.comentarios = new ArrayList<>();
     }
+
 
     // Métodos para agregar likes y comentarios
     public void agregarLike(String usuario) {
@@ -40,11 +42,11 @@ public class Producto {
     }
 
     // Getters y Setters
-    public String getImagenPath() {
+    public Image getImagenPath() {
         return imagenPath;
     }
 
-    public void setImagenPath(String imagenPath) {
+    public void setImagenPath(Image imagenPath) {
         this.imagenPath = imagenPath;
     }
 

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.LoginController">
+<AnchorPane prefHeight="491.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.LoginController">
     <children>
-        <Label text="Inicio de Sesión" layoutX="150" layoutY="30" style="-fx-font-size: 18px;"/>
-        <Label text="Usuario:" layoutX="50" layoutY="80"/>
-        <TextField fx:id="txtUsuario" layoutX="120" layoutY="80" prefWidth="200" promptText="Ingrese su usuario"/>
-        <Label text="Contraseña:" layoutX="50" layoutY="130"/>
-        <PasswordField fx:id="txtContrasena" layoutX="120" layoutY="130" prefWidth="200" promptText="Ingrese su contraseña"/>
-        <Button fx:id="btnIniciarSesion" text="Iniciar Sesión" layoutX="150" layoutY="180" onAction="#btnIniciarSesion"/>
+        <!-- Imagen de fondo -->
+        <ImageView fx:id="backgroundImage" fitHeight="491.0" fitWidth="843.0" pickOnBounds="true" preserveRatio="false">
+         <image>
+            <Image url="@../../../../../images/login.png" />
+         </image></ImageView>
+        <TextField fx:id="txtUsuario" layoutX="472.0" layoutY="174.0" prefHeight="51.0" prefWidth="348.0" promptText="Ingrese su usuario" style="-fx-border-color: black; -fx-border-width: 3px;" />
+        <PasswordField fx:id="txtContrasena" layoutX="472.0" layoutY="257.0" prefHeight="51.0" prefWidth="348.0" promptText="Ingrese su contraseña" style="-fx-border-color: black; -fx-border-width: 3px;" />
+        <Button fx:id="btnIniciarSesion" layoutX="492.0" layoutY="315.0" onAction="#btnIniciarSesion" prefHeight="51.0" prefWidth="276.0" style="-fx-border-color: black; -fx-border-radius: 20px; -fx-border-width: 3px; -fx-background-color: #9BB3E8;" text="Iniciar Sesión" />
     </children>
 </AnchorPane>

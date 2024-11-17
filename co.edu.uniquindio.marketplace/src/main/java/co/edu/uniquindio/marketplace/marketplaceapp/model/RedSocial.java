@@ -28,4 +28,12 @@ public class RedSocial {
         }
     }
 
+    public Vendedor buscarVendedorPorProducto(Producto producto) {
+        for (Vendedor vendedor : vendedores) {
+            if (vendedor.getProductos().contains(producto)) {
+                return vendedor;
+            }
+        }
+        return null;
+    }
 }
