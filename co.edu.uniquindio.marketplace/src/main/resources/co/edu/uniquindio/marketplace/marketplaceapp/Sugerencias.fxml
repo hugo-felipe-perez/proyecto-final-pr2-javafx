@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SugerenciasController">
+    <children>
+        <Label text="Sugerencias de Contactos" layoutX="20" layoutY="20"/>
+        <TableView fx:id="sugerenciasTable" layoutX="20" layoutY="50" prefWidth="400" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="nombreColumn" text="Nombre"/>
+                <TableColumn fx:id="apellidosColumn" text="Apellidos"/>
+            </columns>
+        </TableView>
+        <Button text="Agregar Contacto" layoutX="20" layoutY="270" onAction="#handleAgregarContacto"/>
+    </children>
+</AnchorPane>

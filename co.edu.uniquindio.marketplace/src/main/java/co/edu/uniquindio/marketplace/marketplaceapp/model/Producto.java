@@ -1,0 +1,106 @@
+package co.edu.uniquindio.marketplace.marketplaceapp.model;
+
+import javafx.beans.value.ObservableValue;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Producto {
+    private String nombre;
+    private String categoria;
+    private double precio;
+    private String estado;
+    private LocalDateTime fechaPublicacion;
+    private String imagenPath; // Ruta de la imagen
+    private List<String> likes;
+    private List<Comentario> comentarios;
+
+    // Constructor con imagenPath
+    public Producto(String nombre, String categoria, double precio, String estado, String imagenPath) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.estado = estado;
+        this.imagenPath = imagenPath; // Inicialización correcta de la ruta de imagen
+        this.fechaPublicacion = LocalDateTime.now();
+        this.likes = new ArrayList<>();
+        this.comentarios = new ArrayList<>();
+    }
+
+    // Métodos para agregar likes y comentarios
+    public void agregarLike(String usuario) {
+        if (!likes.contains(usuario)) {
+            likes.add(usuario);
+        }
+    }
+
+    public void agregarComentario(Comentario comentario) {
+        comentarios.add(comentario);
+    }
+
+    // Getters y Setters
+    public String getImagenPath() {
+        return imagenPath;
+    }
+
+    public void setImagenPath(String imagenPath) {
+        this.imagenPath = imagenPath;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public List<String> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<String> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+}

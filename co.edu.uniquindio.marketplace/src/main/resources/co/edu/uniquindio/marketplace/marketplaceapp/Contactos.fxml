@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ContactosController">
+    <children>
+        <Label text="Gestión de Contactos" layoutX="20" layoutY="20"/>
+        <TableView fx:id="contactosTable" layoutX="20" layoutY="50" prefWidth="400" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="nombreColumn" text="Nombre"/>
+                <TableColumn fx:id="usernameColumn" text="Usuario"/>
+            </columns>
+        </TableView>
+        <TextField fx:id="buscarContactoField" layoutX="20" layoutY="270" promptText="Buscar contacto por usuario"/>
+        <Button fx:id="agregarContactoButton" text="Agregar Contacto" layoutX="200" layoutY="270" onAction="#handleAgregarContacto"/>
+        <Button text="Eliminar Contacto" layoutX="320" layoutY="270" onAction="#handleEliminarContacto"/>
+    </children>
+</AnchorPane>

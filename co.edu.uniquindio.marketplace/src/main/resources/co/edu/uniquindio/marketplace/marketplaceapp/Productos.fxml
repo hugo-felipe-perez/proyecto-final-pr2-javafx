@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ProductosController">
+    <children>
+        <Label text="Productos" layoutX="20" layoutY="20"/>
+        <TableView fx:id="productosTable" layoutX="20" layoutY="50" prefWidth="600" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="nombreColumn" text="Producto"/>
+                <TableColumn fx:id="categoriaColumn" text="Categoría"/>
+                <TableColumn fx:id="precioColumn" text="Precio"/>
+                <TableColumn fx:id="imagenColumn" text="Imagen"/>
+            </columns>
+        </TableView>
+        <Button text="Seleccionar Imagen" layoutX="20" layoutY="370" onAction="#handleSeleccionarImagen"/>
+        <Button text="Publicar Producto" layoutX="150" layoutY="370" onAction="#handlePublicarProducto"/>
+        <Button text="Eliminar Producto" layoutX="300" layoutY="370" onAction="#handleEliminarProducto"/>
+        <TextField fx:id="nombreField" layoutX="20" layoutY="410" promptText="Nombre del Producto"/>
+        <TextField fx:id="categoriaField" layoutX="150" layoutY="410" promptText="Categoría"/>
+        <TextField fx:id="precioField" layoutX="300" layoutY="410" promptText="Precio"/>
+        <TextField fx:id="imagenPathField" layoutX="450" layoutY="410" promptText="Ruta de Imagen"/>
+        <Label fx:id="mensajeError" layoutX="20" layoutY="450" textFill="red"/>
+    </children>
+</AnchorPane>

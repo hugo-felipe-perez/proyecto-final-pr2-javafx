@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MainController">
+    <tabs>
+        <Tab text="Red">
+            <AnchorPane>
+                <Label text="Estadísticas de la Red" layoutX="20" layoutY="20"/>
+                <TextArea fx:id="estadisticasArea" layoutX="20" layoutY="50" prefWidth="600" prefHeight="300"/>
+                <Button text="Exportar Estadísticas" layoutX="20" layoutY="370" onAction="#handleExportar"/>
+            </AnchorPane>
+        </Tab>
+    </tabs>
+</TabPane>

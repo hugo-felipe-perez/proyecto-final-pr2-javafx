@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Label?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.VendedorController">
+    <children>
+        <!-- Título -->
+        <Label text="Panel del Vendedor" layoutX="20" layoutY="20" style="-fx-font-size: 18px;"/>
+
+        <!-- TabPane para las pestañas -->
+        <TabPane fx:id="tabPaneVendedor" layoutX="20" layoutY="60" prefWidth="760" prefHeight="400"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+
+<AnchorPane prefHeight="543.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.AdminController">
+    <children>
+        <!-- Título -->
+        <Label layoutX="20" layoutY="20" style="-fx-font-size: 18px;" text="Panel de Administrador" />
+
+        <!-- TabPane principal -->
+        <TabPane fx:id="adminTabPane" layoutX="20" layoutY="60" prefHeight="400" prefWidth="760">
+   <tabs>
+               <!-- Pestaña de Productos -->
+               <Tab text="Productos">
+                  <content>
+                      <AnchorPane>
+                         <children>
+                             <TableView fx:id="productosTable" layoutX="10" layoutY="10" prefHeight="300" prefWidth="720">
+                                 <columns>
+                                     <TableColumn fx:id="nombreColumn" prefWidth="180" text="Nombre" />
+                                     <TableColumn fx:id="categoriaColumn" prefWidth="180" text="Categoría" />
+                                     <TableColumn fx:id="estadoColumn" prefWidth="120" text="Estado" />
+                                     <TableColumn fx:id="precioColumn" prefWidth="120" text="Precio" />
+                                 </columns>
+                             </TableView>
+                             <Button layoutX="10" layoutY="320" onAction="#handleEliminarProducto" text="Eliminar Producto" />
+                         </children>
+                      </AnchorPane>
+                  </content>
+               </Tab>
+   
+               <!-- Pestaña de Usuarios -->
+               <Tab text="Usuarios">
+      <content>
+                      <AnchorPane>
+                         <children>
+                             <TableView fx:id="usuariosTable" layoutX="10" layoutY="10" prefHeight="300" prefWidth="720">
+                                 <columns>
+                                     <TableColumn fx:id="nombreUsuarioColumn" prefWidth="180" text="Nombre" />
+                                     <TableColumn fx:id="apellidosUsuarioColumn" prefWidth="180" text="Apellidos" />
+                                     <TableColumn fx:id="cedulaUsuarioColumn" prefWidth="180" text="Cedula" />
+                                     <TableColumn fx:id="direccionUsuarioColumn" prefWidth="180" text="Direccion" />
+                                     <TableColumn fx:id="usernameColumn" prefWidth="180" text="Usuario" />
+                                     <TableColumn fx:id="passwordnameColumn" prefWidth="180" text="Password" />
+                                     <TableColumn fx:id="rolUsuarioColumn" prefWidth="120" text="Rol" />
+         
+                                 </columns>
+                             </TableView>
+                             <Button layoutX="10" layoutY="320" onAction="#handleAgregarUsuario" text="Agregar Usuario" />
+                             <Button layoutX="286.0" layoutY="320.0" onAction="#handleActualizarUsuario" text="Actualizar Usuario" />
+                             <Button layoutX="577.0" layoutY="320.0" onAction="#handleEliminarUsuario" text="Eliminar Usuario" />
+                         </children>
+                      </AnchorPane>
+      </content>
+               </Tab>
+   
+               <!-- Pestaña de Estadísticas -->
+               <Tab text="Estadísticas">
+      <content>
+                      <AnchorPane>
+                         <children>
+                             <TextArea fx:id="estadisticasArea" editable="false" layoutX="10" layoutY="10" prefHeight="300" prefWidth="720" />
+                             <Button layoutX="10" layoutY="320" onAction="#handleExportarEstadisticas" text="Exportar Estadísticas" />
+                         </children>
+                      </AnchorPane>
+      </content>
+               </Tab>
+   </tabs>
+        </TabPane>
+      <ImageView fitHeight="234.0" fitWidth="229.0" layoutX="809.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>
