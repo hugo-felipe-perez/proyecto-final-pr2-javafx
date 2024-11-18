@@ -8,8 +8,6 @@ import javafx.scene.control.TextArea;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
 import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.ReporteDTO;
-import co.edu.uniquindio.marketplace.marketplaceapp.service.EstadisticasService;
-import co.edu.uniquindio.marketplace.marketplaceapp.service.ExportarService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
