@@ -1,15 +1,12 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.controller;
 
 import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
+import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
+import javafx.scene.control.*;
 
 public class ContactosController {
 
@@ -24,20 +21,16 @@ public class ContactosController {
 
     @FXML
     private TextField buscarContactoField;
-
-    @FXML
-    private Button agregarContactoButton;
-
     private ObservableList<Vendedor> contactosList = FXCollections.observableArrayList();
     private Vendedor vendedorActual;
 
     @FXML
     public void initialize() {
-        // Configurar columnas
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-
+        nombreColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNombre()));
+        usernameColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getUsername()));
         contactosTable.setItems(contactosList);
+        ModelFactory.getInstance().setContactosController(this);
+        cargarContactos();
     }
 
     public void setVendedorActual(Vendedor vendedor) {
@@ -45,9 +38,10 @@ public class ContactosController {
         cargarContactos();
     }
 
-    private void cargarContactos() {
+    public void cargarContactos() {
+        contactosTable.getItems().clear();
         if (vendedorActual != null) {
-            contactosList.setAll(vendedorActual.getContactos());
+            contactosTable.getItems().addAll(vendedorActual.getContactos());
         }
     }
 
@@ -60,25 +54,25 @@ public class ContactosController {
             vendedorActual.agregarContacto(nuevoContacto);
             cargarContactos();
             buscarContactoField.clear();
-        }
-    }
-
-    @FXML
-    public void handleEliminarContacto() {
-        Vendedor seleccionado = contactosTable.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
-            vendedorActual.eliminarContacto(seleccionado);
-            cargarContactos();
+            mostrarAlerta("Éxito", "Contacto agregado correctamente.", Alert.AlertType.INFORMATION);
+        } else {
+            mostrarAlerta("Error", "El contacto no existe o ya está en tu lista.", Alert.AlertType.ERROR);
         }
     }
 
     private Vendedor buscarVendedorPorUsername(String username) {
-        // Buscar el vendedor por su nombre de usuario en la lista global
-        for (Vendedor vendedor : ModelFactory.getInstance().getRedSocial().getVendedores()) {
-            if (vendedor.getUsername().equals(username)) {
-                return vendedor;
-            }
-        }
-        return null;
+        return ModelFactory.getInstance().getRedSocial().getVendedores().stream()
+                .filter(v -> v.getUsername().equals(username))
+                .findFirst()
+                .orElse(null);
     }
+
+    private void mostrarAlerta(String titulo, String contenido, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(contenido);
+        alerta.showAndWait();
+    }
+
 }

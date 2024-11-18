@@ -18,25 +18,33 @@ public class Producto {
     private List<Comentario> comentarios;
 
     // Constructor con imagenPath
-    public Producto(String nombre, String categoria, double precio, String estado, Image imagenPath) {
+    public Producto(String nombre, String categoria, double precio, String estado, Image imagenPath,LocalDateTime fechaPublicacion) {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.estado = estado;
         this.imagenPath = imagenPath; // Inicialización correcta de la ruta de imagen
-        this.fechaPublicacion = LocalDateTime.now();
+        this.fechaPublicacion = fechaPublicacion;
         this.likes = new ArrayList<>();
         this.comentarios = new ArrayList<>();
     }
 
-
-    // Métodos para agregar likes y comentarios
-    public void agregarLike(String usuario) {
-        if (!likes.contains(usuario)) {
-            likes.add(usuario);
-        }
+    public Producto(String nombre, String categoria, double precio, String estado, Image imagenPath) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.estado = estado;
+        this.imagenPath = imagenPath;
     }
 
+    public void agregarLike(String username) {
+        if (!likes.contains(username)) {
+            likes.add(username);
+            System.out.println(username + " dio Me Gusta al producto: " + this.nombre);
+        } else {
+            System.out.println(username + " ya había dado Me Gusta.");
+        }
+    }
     public void agregarComentario(Comentario comentario) {
         comentarios.add(comentario);
     }
@@ -105,4 +113,5 @@ public class Producto {
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+
 }

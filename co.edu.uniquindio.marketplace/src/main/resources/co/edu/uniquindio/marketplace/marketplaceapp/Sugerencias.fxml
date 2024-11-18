@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SugerenciasController">
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #4267B2; -fx-padding: 15;">
+            <Label text="Marketplace" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <TextField fx:id="buscarContactoField" promptText="Buscar vendedores..." style="-fx-pref-width: 300;" />
+            <Button text="Buscar" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+        </HBox>
+    </top>
 
+    <!-- Contenido principal -->
+    <center>
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <Label text="Sugerencias de Contactos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
+            <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+                <VBox fx:id="sugerenciasContainer" spacing="15" style="-fx-padding: 10;">
+                    <!-- Aquí se agregan dinámicamente los elementos de sugerencia -->
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Button?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SugerenciasController">
-    <children>
-        <Label text="Sugerencias de Contactos" layoutX="20" layoutY="20"/>
-        <TableView fx:id="sugerenciasTable" layoutX="20" layoutY="50" prefWidth="400" prefHeight="200">
-            <columns>
-                <TableColumn fx:id="nombreColumn" text="Nombre"/>
-                <TableColumn fx:id="apellidosColumn" text="Apellidos"/>
-            </columns>
-        </TableView>
-        <Button text="Agregar Contacto" layoutX="20" layoutY="270" onAction="#handleAgregarContacto"/>
-    </children>
-</AnchorPane>
+    <!-- Barra lateral -->
+    <right>
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;">
+            <Label text="Contactos" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+            <ListView fx:id="contactosListView" style="-fx-pref-width: 200;" />
+        </VBox>
+    </right>
+</BorderPane>

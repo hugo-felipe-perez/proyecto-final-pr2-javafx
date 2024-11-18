@@ -2,30 +2,48 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
 <DialogPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.AgregarUsuarioController">
+            fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.AgregarUsuarioController"
+            style="-fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-background-color: #F9F9F9;">
+    <headerText>
+        <Label text="Agregar Nuevo Usuario" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    </headerText>
     <content>
-        <GridPane hgap="10" vgap="10">
-            <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="nombreField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <GridPane hgap="15" vgap="15" alignment="center" style="-fx-padding: 20;">
+            <!-- Nombre -->
+            <Label text="Nombre:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="nombreField" promptText="Ingrese el nombre" style="-fx-pref-width: 250px;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            <Label text="Apellidos:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="apellidosField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <!-- Apellidos -->
+            <Label text="Apellidos:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="apellidosField" promptText="Ingrese los apellidos" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <Label text="Cédula:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="cedulaField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <!-- Cédula -->
+            <Label text="Cédula:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="cedulaField" promptText="Ingrese la cédula" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <Label text="Dirección:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="direccionField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <!-- Dirección -->
+            <Label text="Dirección:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="direccionField" promptText="Ingrese la dirección" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-            <Label text="Usuario:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="usernameField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <!-- Usuario -->
+            <Label text="Usuario:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="usernameField" promptText="Ingrese el usuario" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-            <Label text="Contraseña:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <PasswordField fx:id="passwordField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-            <Label text="Rol:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <!-- Contraseña -->
+            <Label text="Contraseña:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="passwordField" promptText="Ingrese la contraseña" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <!-- Rol -->
+            <Label text="Rol:" style="-fx-font-size: 14px; -fx-text-fill: #333333;" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
             <ChoiceBox fx:id="rolChoiceBox" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
         </GridPane>
     </content>
+    <buttonTypes>
+        <ButtonType text="Guardar" buttonData="OK_DONE" />
+        <ButtonType text="Cancelar" buttonData="CANCEL_CLOSE" />
+    </buttonTypes>
 </DialogPane>
+

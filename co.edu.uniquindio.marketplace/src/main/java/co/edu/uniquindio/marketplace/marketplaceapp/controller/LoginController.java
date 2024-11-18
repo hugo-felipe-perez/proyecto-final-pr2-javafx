@@ -1,9 +1,7 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.controller;
 
-import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.UsuarioDTO;
 import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,30 +14,47 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoginController {
+
+    ModelFactory modelFactory;
 
     @FXML
     private TextField txtUsuario;
 
     @FXML
     private PasswordField txtContrasena;
+
     @FXML
     private ImageView backgroundImage;
 
     @FXML
     public void initialize() {
-        // Configurar la imagen de fondo
-        Image background = new Image(getClass().getResource("/images/login.png").toExternalForm());
-        backgroundImage.setImage(background);
+        try {
+            // Configurar la imagen de fondo
+            Image background = new Image(getClass().getResource("/images/login.png").toExternalForm());
+            backgroundImage.setImage(background);
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar la imagen de fondo: " + e.getMessage());
+        }
     }
+
     @FXML
     public void handleLogin() {
         String nombreUsuario = txtUsuario.getText();
         String contrasena = txtContrasena.getText();
 
+        // Validar si los campos están vacíos
+        if (nombreUsuario.isEmpty() || contrasena.isEmpty()) {
+            mostrarAlerta("Campos Vacíos", "Por favor ingresa el usuario y la contraseña", Alert.AlertType.WARNING);
+            return;
+        }
+
         try {
             Vendedor vendedor = obtenerVendedorActual(nombreUsuario);
             if (vendedor.getPassword().equals(contrasena)) {
+                ModelFactory.getInstance().setUsuarioActual(vendedor);
                 redirigirAPaginaPrincipal(vendedor.getRol().name());
             } else {
                 mostrarAlerta("Login Fallido", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
@@ -66,7 +81,7 @@ public class LoginController {
 
             if (rol.equalsIgnoreCase("Vendedor")) {
                 VendedorController vendedorController = loader.getController();
-                vendedorController.setVendedorActual(obtenerVendedorActual(txtUsuario.getText()));
+                vendedorController.setVendedorActual(obtenerVendedorActual(txtUsuario.getText())); // Ana debe ser el actual
             }
 
             Stage stage = (Stage) txtUsuario.getScene().getWindow();
@@ -78,14 +93,13 @@ public class LoginController {
             mostrarAlerta("Error", "No se pudo cargar la página principal", Alert.AlertType.ERROR);
         }
     }
+
     private Vendedor obtenerVendedorActual(String username) {
         // Busca al vendedor actual en la lista global de vendedores
-        for (Vendedor vendedor : ModelFactory.getInstance().getRedSocial().getVendedores()) {
-            if (vendedor.getUsername().equals(username)) {
-                return vendedor;
-            }
-        }
-        throw new IllegalArgumentException("Usuario no encontrado");
+        return ModelFactory.getInstance().getRedSocial().getVendedores().stream()
+                .filter(vendedor -> vendedor.getUsername().equals(username))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
     }
 
     private void mostrarAlerta(String titulo, String contenido, Alert.AlertType tipo) {
@@ -95,10 +109,9 @@ public class LoginController {
         alerta.setHeaderText(null);
         alerta.showAndWait();
     }
+
     @FXML
     public void btnIniciarSesion(ActionEvent actionEvent) {
         handleLogin();
     }
 }
-
-

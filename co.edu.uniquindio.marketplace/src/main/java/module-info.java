@@ -9,7 +9,7 @@ module co.edu.uniquindio.marketplace.marketplaceapp {
     exports  co.edu.uniquindio.marketplace.marketplaceapp.controller;
     opens  co.edu.uniquindio.marketplace.marketplaceapp.model to javafx.fxml;
     exports  co.edu.uniquindio.marketplace.marketplaceapp.model;
-
+    opens images to javafx.fxml;
     //opens co.edu.uniquindio.marketplace.marketplaceapp.viewcontroller to javafx.fxml;
     //exports co.edu.uniquindio.marketplace.marketplaceapp.viewcontroller;
 }

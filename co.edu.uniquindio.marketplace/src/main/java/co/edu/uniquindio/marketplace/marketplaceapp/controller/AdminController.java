@@ -7,16 +7,21 @@ import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 import co.edu.uniquindio.marketplace.marketplaceapp.service.ExportarService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class AdminController {
@@ -252,6 +257,19 @@ public class AdminController {
             mostrarAlerta("Éxito", "Reporte exportado correctamente", Alert.AlertType.INFORMATION);
         }
     }
+    @FXML
+    public void handleCerrarSesion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Login.fxml"));
+            Scene loginScene = new Scene(loader.load());
+            Stage currentStage = (Stage) adminTabPane.getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.setTitle("Login - Marketplace");
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo cerrar la sesión correctamente", Alert.AlertType.ERROR);
+        }
+    }
 
     private void mostrarAlerta(String titulo, String contenido, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
@@ -275,7 +293,7 @@ public class AdminController {
             Tab muroTab = new Tab("Muro");
             try {
                 FXMLLoader muroLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Muro.fxml"));
-                AnchorPane muroPane = muroLoader.load();
+                BorderPane muroPane = muroLoader.load();
 
                 // Pasar el vendedor actual al MuroController
                 MuroController muroController = muroLoader.getController();
@@ -313,5 +331,4 @@ public class AdminController {
             adminTabPane.getTabs().add(vendedorTab);
         }
     }
-
 }

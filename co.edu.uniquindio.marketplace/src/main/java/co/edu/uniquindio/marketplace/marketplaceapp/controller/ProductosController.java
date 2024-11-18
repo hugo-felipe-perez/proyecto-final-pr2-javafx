@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.time.LocalDateTime;
 
 public class ProductosController {
 
@@ -30,6 +31,9 @@ public class ProductosController {
 
     @FXML
     private TableColumn<Producto, String> imagenColumn;
+
+    @FXML
+    private TableColumn<?, ?> estadoColum;
 
     @FXML
     private TextField nombreField;
@@ -114,6 +118,7 @@ public class ProductosController {
             String categoria = categoriaField.getText();
             String imagenPath = imagenPathField.getText(); // Obtiene la ruta como String
             double precio = Double.parseDouble(precioField.getText());
+            LocalDateTime fechaPublicacion = LocalDateTime.now();
 
             if (nombre.isEmpty() || categoria.isEmpty() || imagenPath.isEmpty()) {
                 throw new IllegalArgumentException("Todos los campos son obligatorios.");
@@ -123,7 +128,7 @@ public class ProductosController {
             Image imagen = new Image("file:" + imagenPath);
 
             // Crear y agregar producto
-            Producto producto = new Producto(nombre, categoria, precio, "Publicado", imagen);
+            Producto producto = new Producto(nombre, categoria, precio, "Publicado", imagen,fechaPublicacion);
             vendedorActual.agregarProducto(producto);
             cargarProductos();
 

@@ -7,12 +7,13 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane prefHeight="621.0" prefWidth="951.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.VendedorController">
+<AnchorPane prefHeight="673.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.VendedorController">
     <children>
         <!-- Título -->
         <Label layoutX="20" layoutY="20" style="-fx-font-size: 18px;" text="Panel del Vendedor" />
 
         <!-- TabPane para las pestañas -->
         <TabPane fx:id="tabPaneVendedor" layoutX="20.0" layoutY="50" prefHeight="550.0" prefWidth="950.0" />
+        <Button layoutX="14.0" layoutY="620.0" onAction="#handleCerrarSesion" style="-fx-background-color: #FF5A5F; -fx-text-fill: white; -fx-font-weight: bold;" text="Cerrar Sesión" />
     </children>
 </AnchorPane>

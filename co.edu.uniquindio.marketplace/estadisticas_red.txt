@@ -3,6 +3,6 @@ Fecha: 2024-11-16T13:42:52.138023
 Usuario: Administrador
 
 Contenido:
-Estadísticas:d,ñdñs
+Estadísticas:
 
 -------------------------------------------

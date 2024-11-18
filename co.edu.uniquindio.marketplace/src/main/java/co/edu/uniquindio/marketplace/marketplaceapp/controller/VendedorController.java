@@ -5,10 +5,13 @@ import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class VendedorController {
 
@@ -86,5 +89,24 @@ public class VendedorController {
             e.printStackTrace();
         }
     }
-
+    @FXML
+    public void handleCerrarSesion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Login.fxml"));
+            Scene loginScene = new Scene(loader.load());
+            Stage currentStage = (Stage) tabPaneVendedor.getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.setTitle("Login - Marketplace");
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudo cerrar la sesión correctamente", Alert.AlertType.ERROR);
+        }
+    }
+    private void mostrarAlerta(String titulo, String contenido, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setContentText(contenido);
+        alerta.setHeaderText(null);
+        alerta.showAndWait();
+    }
 }

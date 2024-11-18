@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.Button?>
 
-<AnchorPane prefHeight="425.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MuroController">
-    <children>
-        <Label layoutX="20" layoutY="20" text="Muro de Productos" />
-        <TableView fx:id="muroTable" layoutX="20" layoutY="50" prefHeight="300" prefWidth="600">
-            <columns>
-                <TableColumn fx:id="imagenColumn" text="Imagen" />
-                <TableColumn fx:id="nombreColumn" text="Producto" />
-                <TableColumn fx:id="categoriaColumn" text="Categoría" />
-                <TableColumn fx:id="estadoColumn" text="Estado" />
-                <TableColumn fx:id="likesColumn" text="Likes" />
-                <TableColumn fx:id="comentariosColumn" text="Comentarios" />
-            </columns>
-        </TableView>
-        <Button layoutX="20" layoutY="370" onAction="#handleDarMeGusta" text="Dar Me Gusta" />
-        <Button layoutX="414.0" layoutY="370.0" onAction="#handleAgregarComentario" text="Agregar Comentario" />
-    </children>
-</AnchorPane>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MuroController">
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #4267B2; -fx-padding: 10;">
+            <Label text="Marketplace" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <TextField fx:id="searchField" promptText="Buscar productos o contactos..." style="-fx-pref-width: 300;" />
+            <Button text="Buscar" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+        </HBox>
+    </top>
+
+    <!-- Contenido principal -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <Label text="Muro" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+            <TableView fx:id="muroTable" style="-fx-border-color: #E0E0E0; -fx-background-color: white;">
+                <columns>
+                    <TableColumn fx:id="imagenColumn" text="Imagen" prefWidth="100" />
+                    <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="150" />
+                    <TableColumn fx:id="categoriaColumn" text="Categoría" prefWidth="100" />
+                    <TableColumn fx:id="estadoColumn" text="Estado" prefWidth="80" />
+                    <TableColumn fx:id="fechaPublicacionColumn" text="Publicado" prefWidth="150" />
+                    <TableColumn fx:id="likesColumn" text="Likes" prefWidth="80" />
+                    <TableColumn fx:id="comentariosColumn" text="Comentarios" prefWidth="100" />
+                </columns>
+            </TableView>
+            <HBox spacing="10" style="-fx-padding: 10;">
+                <Button fx:id="likeButton" text="Dar Me Gusta" onAction="#handleDarMeGusta" style="-fx-background-color: #4267B2; -fx-text-fill: white;" />
+                <Button fx:id="commentButton" text="Agregar Comentario" onAction="#handleAgregarComentario" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+                <Button fx:id="verLikesButton" text="Ver Me Gusta" onAction="#handleVerLikes" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+                <Button fx:id="verComentariosButton" text="Ver Comentarios" onAction="#handleVerComentarios" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+                <Button fx:id="verSolicitudesButton" text="Ver Solicitudes" onAction="#handleVerSolicitudes" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+                <Button fx:id="verTableroButton" text="Ver Tablero" onAction="#handleVerTablero" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Barra lateral -->
+    <right>
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;">
+            <Label text="Estadísticas" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+            <TextArea fx:id="estadisticasArea" wrapText="true" editable="false" style="-fx-pref-width: 200; -fx-pref-height: 150;" />
+        </VBox>
+    </right>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox spacing="10" style="-fx-background-color: #E0E0E0; -fx-padding: 10;">
+            <Label text="Marketplace App © 2024" style="-fx-font-size: 12;" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </bottom>
+</BorderPane>

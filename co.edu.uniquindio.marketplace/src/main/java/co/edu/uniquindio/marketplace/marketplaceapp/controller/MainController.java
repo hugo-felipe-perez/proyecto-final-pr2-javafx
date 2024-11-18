@@ -56,31 +56,38 @@ public class MainController {
         Tab contactosTab = new Tab("Contactos");
         Tab productosTab = new Tab("Productos");
         Tab sugerenciasTab = new Tab("Sugerencias");
+        Tab solicitudesTab = new Tab("Solicitudes"); // Nueva pestaña
 
-        // Crear un FXMLLoader para cada archivo FXML y cargar su contenido
+        // Cargar archivo FXML para cada pestaña
         FXMLLoader muroLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Muro.fxml"));
         muroTab.setContent(muroLoader.load());
-        MuroController muroController = muroLoader.getController(); // Obtener el controlador
+        MuroController muroController = muroLoader.getController();
         muroController.setVendedorActual(vendedor);
 
         FXMLLoader contactosLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Contactos.fxml"));
         contactosTab.setContent(contactosLoader.load());
-        ContactosController contactosController = contactosLoader.getController(); // Obtener el controlador
+        ContactosController contactosController = contactosLoader.getController();
         contactosController.setVendedorActual(vendedor);
 
         FXMLLoader productosLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Productos.fxml"));
         productosTab.setContent(productosLoader.load());
-        ProductosController productosController = productosLoader.getController(); // Obtener el controlador
+        ProductosController productosController = productosLoader.getController();
         productosController.setVendedorActual(vendedor);
 
         FXMLLoader sugerenciasLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Sugerencias.fxml"));
         sugerenciasTab.setContent(sugerenciasLoader.load());
-        SugerenciasController sugerenciasController = sugerenciasLoader.getController(); // Obtener el controlador
+        SugerenciasController sugerenciasController = sugerenciasLoader.getController();
         sugerenciasController.setVendedorActual(vendedor);
 
-        // Agregar todas las pestañas al TabPane
-        vendedorTabs.getTabs().addAll(muroTab, contactosTab, productosTab, sugerenciasTab);
+        FXMLLoader solicitudesLoader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Solicitudes.fxml"));
+        solicitudesTab.setContent(solicitudesLoader.load());
+        SolicitudesController solicitudesController = solicitudesLoader.getController();
+        solicitudesController.setVendedorActual(vendedor);
+
+        // Agregar pestañas al TabPane
+        vendedorTabs.getTabs().addAll(muroTab, contactosTab, productosTab, sugerenciasTab, solicitudesTab);
         return vendedorTabs;
+
     }
     @FXML
     public void handleExportar() {

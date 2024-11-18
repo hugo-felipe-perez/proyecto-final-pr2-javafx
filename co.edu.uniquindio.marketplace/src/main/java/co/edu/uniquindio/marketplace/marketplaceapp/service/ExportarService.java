@@ -4,7 +4,7 @@ import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.ReporteDTO;
 
 import java.io.FileWriter;
 import java.io.IOException;
-
+//Patron command
 public class ExportarService {
 
     public void exportarReporte(ReporteDTO reporte, String rutaArchivo) {

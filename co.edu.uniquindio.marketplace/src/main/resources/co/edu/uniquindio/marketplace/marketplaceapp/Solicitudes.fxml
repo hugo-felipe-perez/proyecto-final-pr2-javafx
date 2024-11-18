@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SolicitudesController"
+            style="-fx-background-color: #f4f4f4; -fx-padding: 20;">
+    <children>
+        <!-- Título del Panel -->
+        <VBox spacing="15" alignment="TOP_CENTER" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.3, 0, 0);">
+            <Label text="Solicitudes de Contacto" style="-fx-font-size: 20; -fx-font-weight: bold;" />
+
+            <HBox spacing="10" alignment="CENTER" style="-fx-pref-height: 300;">
+                <!-- Lista de Solicitudes -->
+                <VBox spacing="10" style="-fx-pref-width: 300;">
+                    <Label text="Solicitudes Recibidas" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+                    <ListView fx:id="solicitudesListView" style="-fx-pref-height: 250; -fx-border-color: #ddd; -fx-background-radius: 5;" />
+                </VBox>
+
+                <!-- Detalles de la Solicitud -->
+                <VBox spacing="10" style="-fx-pref-width: 350;">
+                    <Label text="Detalles de la Solicitud" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+                    <TextArea fx:id="detalleSolicitudArea" wrapText="true" editable="false"
+                              style="-fx-pref-height: 250; -fx-border-color: #ddd; -fx-background-radius: 5;" />
+                </VBox>
+            </HBox>
+
+            <!-- Botones de Acción -->
+            <HBox spacing="20" alignment="CENTER" style="-fx-padding: 10;">
+                <Button text="Aceptar Solicitud" fx:id="aceptarButton" onAction="#handleAceptarSolicitud"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14; -fx-padding: 10;" />
+                <Button text="Rechazar Solicitud" fx:id="rechazarButton" onAction="#handleRechazarSolicitud"
+                        style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14; -fx-padding: 10;" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

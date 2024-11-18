@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.TableroController">
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="15" style="-fx-background-color: #003366; -fx-padding: 15; -fx-alignment: center;">
+            <Label text="Tablero de Control - Marketplace" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="fechaInicioField" promptText="Fecha Inicio (dd-MM-yyyy)" style="-fx-pref-width: 200; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="fechaFinField" promptText="Fecha Fin (dd-MM-yyyy)" style="-fx-pref-width: 200; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button text="Filtrar" onAction="#handleFiltrarEstadisticas" style="-fx-background-color: #007ACC; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button text="Exportar" onAction="#handleExportar" style="-fx-background-color: #28A745; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5;" />
+        </HBox>
+    </top>
+
+    <!-- Contenido principal -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <Label text="Top 10 Productos con Más Me Gusta" style="-fx-font-size: 22; -fx-font-weight: bold;" />
+            <BarChart fx:id="topProductosChart" style="-fx-border-color: #D1D1D1; -fx-background-color: #FAFAFA; -fx-padding: 10;" title="Productos con más Likes">
+                <xAxis>
+                    <CategoryAxis label="Productos" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Likes" />
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </center>
+
+    <!-- Barra lateral derecha -->
+    <right>
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #F4F6F7; -fx-border-color: #D1D1D1; -fx-border-radius: 5;">
+            <Label text="Indicadores del Tablero" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <TextArea fx:id="indicadoresArea" wrapText="true" editable="false" style="-fx-pref-width: 250; -fx-pref-height: 250; -fx-border-radius: 5; -fx-background-radius: 5;" />
+        </VBox>
+    </right>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox spacing="10" style="-fx-background-color: #003366; -fx-padding: 10;">
+            <Label text="Marketplace App © 2024" style="-fx-font-size: 12; -fx-text-fill: white;" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </bottom>
+</BorderPane>

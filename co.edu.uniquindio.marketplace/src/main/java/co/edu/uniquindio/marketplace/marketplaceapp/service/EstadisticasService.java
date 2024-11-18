@@ -4,7 +4,7 @@ import co.edu.uniquindio.marketplace.marketplaceapp.model.Producto;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 
 import java.util.List;
-
+//Strategy
 public class EstadisticasService {
 
     public int contarMensajesEntre(Vendedor vendedor1, Vendedor vendedor2) {
