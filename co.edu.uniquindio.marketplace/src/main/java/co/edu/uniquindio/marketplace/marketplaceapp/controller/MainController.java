@@ -6,6 +6,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
+import co.edu.uniquindio.marketplace.marketplaceapp.services.EstrategiaEstadistica;
 import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
 import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.ReporteDTO;
 
@@ -21,15 +22,16 @@ public class MainController {
     private TextArea estadisticasArea;
 
     private ModelFactory modelFactory = ModelFactory.getInstance();
-    private EstadisticasService estadisticasService = new EstadisticasService();
-    private ExportarService exportarService = new ExportarService();
+    //private EstrategiaEstadistica estadisticasService = new EstrategiaEstadistica();
+    //private ExportarService exportarService = new ExportarService();
 
     @FXML
     public void initialize() throws IOException {
-        cargarEstadisticas();
+       // cargarEstadisticas();
         generarPestanasVendedores();
     }
 
+   /*
     private void cargarEstadisticas() {
         StringBuilder estadisticas = new StringBuilder("Estadísticas:\n");
         for (Vendedor vendedor : modelFactory.getRedSocial().getVendedores()) {
@@ -39,6 +41,7 @@ public class MainController {
         }
         estadisticasArea.setText(estadisticas.toString());
     }
+    */
 
     private void generarPestanasVendedores() throws IOException {
         for (Vendedor vendedor : modelFactory.getRedSocial().getVendedores()) {
@@ -95,7 +98,7 @@ public class MainController {
                 "Administrador",
                 estadisticasArea.getText()
         );
-        exportarService.exportarReporte(reporte, "estadisticas_red.txt");
+       // exportarService.exportarReporte(reporte, "estadisticas_red.txt");
     }
 
 }

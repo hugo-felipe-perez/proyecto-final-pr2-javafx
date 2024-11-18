@@ -1,7 +1,7 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.controller;
 
 import co.edu.uniquindio.marketplace.marketplaceapp.patrones.command.ExportCommand;
-import co.edu.uniquindio.marketplace.marketplaceapp.patrones.command.ExportarServicio;
+import co.edu.uniquindio.marketplace.marketplaceapp.services.ExportarServicio;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;

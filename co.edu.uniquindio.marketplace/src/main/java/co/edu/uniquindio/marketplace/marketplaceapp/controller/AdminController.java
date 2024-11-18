@@ -4,6 +4,7 @@ import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
 import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.ReporteDTO;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Producto;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
+import co.edu.uniquindio.marketplace.marketplaceapp.services.ExportarServicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -68,7 +69,7 @@ public class AdminController {
     private ObservableList<Producto> productosList = FXCollections.observableArrayList();
     private ObservableList<Vendedor> usuariosList = FXCollections.observableArrayList();
 
-    private ExportarService exportarService = new ExportarService();
+    private ExportarServicio exportarService = new ExportarServicio();
     private ModelFactory modelFactory = ModelFactory.getInstance();
 
     @FXML
@@ -251,7 +252,7 @@ public class AdminController {
                     "Administrador",
                     estadisticasArea.getText()
             );
-            exportarService.exportarReporte(reporte, file.getAbsolutePath());
+            //exportarService.exportar(file.getAbsolutePath(), reporte);
             mostrarAlerta("Éxito", "Reporte exportado correctamente", Alert.AlertType.INFORMATION);
         }
     }
