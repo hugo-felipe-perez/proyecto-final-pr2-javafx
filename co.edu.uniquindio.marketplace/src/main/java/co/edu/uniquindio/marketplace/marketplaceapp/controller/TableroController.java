@@ -1,10 +1,12 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.controller;
 
+import co.edu.uniquindio.marketplace.marketplaceapp.model.Producto;
 import co.edu.uniquindio.marketplace.marketplaceapp.patrones.singleton.EstadisticasSingleton;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.builder.ReporteBuilder;
 import co.edu.uniquindio.marketplace.marketplaceapp.patrones.command.ExportCommand;
 import co.edu.uniquindio.marketplace.marketplaceapp.services.ExportarServicio;
+import co.edu.uniquindio.marketplace.marketplaceapp.utils.DataUtil;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -19,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class TableroController {
 
@@ -43,40 +46,59 @@ public class TableroController {
             cargarTopProductos();
             mostrarIndicadores();
         }
-    
-        private void cargarTopProductos() {
+
+    private void cargarTopProductos() {
+        topProductosChart.getData().clear();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Top Productos");
+
+        // Obtener el Top 10 de productos
+        List<Producto> topProductos = estadisticasSingleton.obtenerTopProductosConMasLikes();
+
+        // Agregar los productos al gráfico
+        for (Producto producto : topProductos) {
+            series.getData().add(new XYChart.Data<>(producto.getNombre(), producto.getLikes().size()));
+        }
+
+        topProductosChart.getData().add(series);
+    }
+        private void mostrarIndicadores() {
+        StringBuilder indicadores = new StringBuilder("Indicadores del Tablero:\n");
+
+        int totalProductos = estadisticasSingleton.obtenerTotalProductosPublicados();
+        int totalContactos = DataUtil.cargarVendedoresIniciales().stream()
+                .mapToInt(vendedor -> estadisticasSingleton.obtenerCantidadDeContactosPorVendedor(vendedor))
+                .sum();
+
+        indicadores.append("- Total de mensajes enviados: ").append(estadisticasSingleton.obtenerTotalMensajesEnviados()).append("\n");
+        indicadores.append("- Total de productos publicados: ").append(totalProductos).append("\n");
+        indicadores.append("- Total de contactos: ").append(totalContactos).append("\n");
+
+        indicadoresArea.setText(indicadores.toString());
+    }
+
+    @FXML
+    public void handleFiltrarEstadisticas() {
+        try {
+            LocalDate fechaInicio = LocalDate.parse(fechaInicioField.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate fechaFin = LocalDate.parse(fechaFinField.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+            // Filtrar productos entre fechas
+            List<Producto> productosFiltrados = estadisticasSingleton.obtenerProductosPublicadosEntreFechas(fechaInicio, fechaFin);
+
             topProductosChart.getData().clear();
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Top Productos");
-    
-            // Simular datos (deberían venir de la lógica real)
-            series.getData().add(new XYChart.Data<>("Producto A", 50));
-            series.getData().add(new XYChart.Data<>("Producto B", 30));
-            series.getData().add(new XYChart.Data<>("Producto C", 20));
-    
-            topProductosChart.getData().add(series);
-        }
-    
-        private void mostrarIndicadores() {
-            StringBuilder indicadores = new StringBuilder();
-            indicadores.append("Indicadores del Tablero:\n");
-            indicadores.append("- Total de mensajes enviados: 120\n");
-            indicadores.append("- Total de productos publicados: 45\n");
-            indicadores.append("- Total de contactos: 30\n");
-            indicadoresArea.setText(indicadores.toString());
-        }
-    
-        @FXML
-        public void handleFiltrarEstadisticas() {
-            try {
-                LocalDate fechaInicio = LocalDate.parse(fechaInicioField.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                LocalDate fechaFin = LocalDate.parse(fechaFinField.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                // Lógica para filtrar estadísticas
-                cargarTopProductos(); // Simulación
-            } catch (Exception e) {
-                mostrarAlerta("Error", "Por favor ingresa fechas válidas (dd-MM-yyyy).", Alert.AlertType.ERROR);
+            series.setName("Productos Filtrados");
+
+            for (Producto producto : productosFiltrados) {
+                series.getData().add(new XYChart.Data<>(producto.getNombre(), producto.getLikes().size()));
             }
+
+            topProductosChart.getData().add(series);
+        } catch (Exception e) {
+            mostrarAlerta("Error", "Por favor ingresa fechas válidas (dd-MM-yyyy).", Alert.AlertType.ERROR);
         }
+    }
     
         @FXML
         public void handleExportar() {
@@ -98,7 +120,7 @@ public class TableroController {
                 try (FileWriter writer = new FileWriter(file)) {
                     writer.write("<Título> " + "Reporte de Estadísticas\n");
                     writer.write("<Fecha> " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "\n");
-                    writer.write("<Usuario> Reporte realizado por: UsuarioActual\n");
+                    writer.write("<Usuario> Reporte realizado por: " + (vendedorActual != null ? vendedorActual.getNombre() : "Desconocido") + "\n\n");
                     writer.write("\nInformación del reporte:\n");
                     writer.write(contenidoReporte);
                     writer.write("\n--------------------------------------\n");
@@ -117,9 +139,10 @@ public class TableroController {
             alerta.setContentText(contenido);
             alerta.showAndWait();
         }
-    
-        public void setVendedorActual(Vendedor vendedor) {
-            this.vendedorActual = vendedor;
+
+    public void setVendedorActual(Vendedor vendedor) {
+        this.vendedorActual = vendedor;
         cargarTopProductos();
+        mostrarIndicadores();
     }
 }

@@ -5,6 +5,6 @@ import co.edu.uniquindio.marketplace.marketplaceapp.services.EstrategiaEstadisti
 public class CantidadMensajesStrategy implements EstrategiaEstadistica {
     @Override
     public String calcularEstadistica() {
-        return "Cantidad de mensajes enviados: 120";
+        return calcularEstadistica();
     }
 }

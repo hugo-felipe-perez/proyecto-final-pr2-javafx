@@ -5,8 +5,15 @@ import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ContactosController {
 
@@ -21,6 +28,7 @@ public class ContactosController {
 
     @FXML
     private TextField buscarContactoField;
+
     private ObservableList<Vendedor> contactosList = FXCollections.observableArrayList();
     private Vendedor vendedorActual;
 
@@ -75,4 +83,23 @@ public class ContactosController {
         alerta.showAndWait();
     }
 
+    public void handleEnviarMensaje(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/marketplace/marketplaceapp/Mensajes.fxml"));
+            Parent root = loader.load();
+
+            // Configurar el controlador de Mensajes
+            MensajesController mensajesController = loader.getController();
+            mensajesController.setVendedorActual(vendedorActual);
+
+            // Mostrar la nueva ventana
+            Stage stage = new Stage();
+            stage.setTitle("Mensajes");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            mostrarAlerta("Error", "No se pudo abrir la ventana de mensajes.", Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
 }

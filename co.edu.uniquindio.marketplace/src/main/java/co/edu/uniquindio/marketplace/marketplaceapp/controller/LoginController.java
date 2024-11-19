@@ -1,6 +1,7 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.controller;
 
 import co.edu.uniquindio.marketplace.marketplaceapp.factory.ModelFactory;
+import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.AdministradorDTO;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,11 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.Optional;
 
 public class LoginController {
-
-    ModelFactory modelFactory;
 
     @FXML
     private TextField txtUsuario;
@@ -52,10 +51,22 @@ public class LoginController {
         }
 
         try {
+            // Primero validamos si es un administrador
+            Optional<AdministradorDTO> adminOpt = ModelFactory.getInstance().getAdministradores().stream()
+                    .filter(admin -> admin.getUsuario().equals(nombreUsuario) && admin.getContrasena().equals(contrasena))
+                    .findFirst();
+
+            if (adminOpt.isPresent()) {
+                // Si es administrador, redirigir a la vista de administrador
+                redirigirAPaginaPrincipal("Administrador");
+                return;
+            }
+
+            // Si no es administrador, validar como vendedor
             Vendedor vendedor = obtenerVendedorActual(nombreUsuario);
             if (vendedor.getPassword().equals(contrasena)) {
                 ModelFactory.getInstance().setUsuarioActual(vendedor);
-                redirigirAPaginaPrincipal(vendedor.getRol().name());
+                redirigirAPaginaPrincipal("Vendedor");
             } else {
                 mostrarAlerta("Login Fallido", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
             }
@@ -81,7 +92,7 @@ public class LoginController {
 
             if (rol.equalsIgnoreCase("Vendedor")) {
                 VendedorController vendedorController = loader.getController();
-                vendedorController.setVendedorActual(obtenerVendedorActual(txtUsuario.getText())); // Ana debe ser el actual
+                vendedorController.setVendedorActual(obtenerVendedorActual(txtUsuario.getText()));
             }
 
             Stage stage = (Stage) txtUsuario.getScene().getWindow();
@@ -114,4 +125,5 @@ public class LoginController {
     public void btnIniciarSesion(ActionEvent actionEvent) {
         handleLogin();
     }
+
 }

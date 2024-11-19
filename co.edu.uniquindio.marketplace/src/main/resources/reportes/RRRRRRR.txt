@@ -1,0 +1,39 @@
+<Título> Reporte de Estadísticas
+<Fecha> 19-11-2024
+<Usuario> Reporte realizado por: Administrador
+
+Información del reporte:
+===================================
+       🌟 Reporte con Estilo 🌟     
+===================================
+Reporte Básico de Marketplace
+- Total de vendedores: 4
+- Total de productos publicados: 8
+
+Estadísticas Detalladas:
+Usuario: Ana (anag)
+- Productos publicados: 2
+- Mensajes enviados: 1
+- Contactos: 1
+
+Usuario: Luis (luism)
+- Productos publicados: 2
+- Mensajes enviados: 1
+- Contactos: 1
+
+Usuario: Carlos (carlosr)
+- Productos publicados: 2
+- Mensajes enviados: 1
+- Contactos: 1
+
+Usuario: María (mariap)
+- Productos publicados: 2
+- Mensajes enviados: 1
+- Contactos: 1
+
+
+===================================
+        📊 Fin del Reporte 📊       
+===================================
+
+--------------------------------------

@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ContactosController" spacing="10" style="-fx-padding: 20;">
-    <Label text="Mis Contactos" style="-fx-font-size: 18; -fx-font-weight: bold;" />
-    <TableView fx:id="contactosTable" style="-fx-border-color: #E0E0E0;">
-        <columns>
-            <TableColumn fx:id="nombreColumn" text="Nombre" prefWidth="150" />
-            <TableColumn fx:id="usernameColumn" text="Username" prefWidth="150" />
-        </columns>
-    </TableView>
-    <HBox spacing="10">
-        <TextField fx:id="buscarContactoField" promptText="Buscar contacto..." style="-fx-pref-width: 300;" />
-        <Button fx:id="agregarContactoButton" text="Agregar Contacto" onAction="#handleAgregarContacto" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
-    </HBox>
+<VBox prefHeight="526.0" prefWidth="771.0" spacing="10" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ContactosController">
+   <children>
+       <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Mis Contactos" />
+       <TableView fx:id="contactosTable" prefHeight="400.0" prefWidth="688.0" style="-fx-border-color: #E0E0E0;">
+           <columns>
+               <TableColumn fx:id="nombreColumn" prefWidth="344.0" text="Nombre" />
+               <TableColumn fx:id="usernameColumn" prefWidth="385.0" text="Username" />
+           </columns>
+       </TableView>
+       <HBox spacing="10">
+          <children>
+              <TextField fx:id="buscarContactoField" promptText="Buscar contacto..." style="-fx-pref-width: 300;" />
+              <Button fx:id="agregarContactoButton" onAction="#handleAgregarContacto" opacity="0.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Agregar Contacto" />
+            <Button fx:id="enviarMensajeButton1" onAction="#handleEnviarMensaje" prefHeight="39.0" prefWidth="164.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Enviar Mensaje" />
+          </children>
+       </HBox>
+   </children>
 </VBox>

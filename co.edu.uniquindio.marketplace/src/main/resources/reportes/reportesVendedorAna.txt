@@ -1,0 +1,13 @@
+<Título> Reporte de Estadísticas
+<Fecha> 19-11-2024
+<Usuario> Reporte realizado por: Ana
+
+
+Información del reporte:
+Título: Reporte de Estadísticas del Tablero
+Indicadores del Tablero:
+- Total de mensajes enviados: 4
+- Total de productos publicados: 8
+- Total de contactos: 4
+
+--------------------------------------

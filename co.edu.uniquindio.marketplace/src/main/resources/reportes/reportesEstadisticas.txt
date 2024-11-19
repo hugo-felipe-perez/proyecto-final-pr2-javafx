@@ -1,0 +1,32 @@
+Reporte de Estadísticas del Marketplace
+Generado el: 2024-11-19T00:25:04.447378200
+
+--- Contenido ---
+Estadísticas Generales del Marketplace:
+- Total de usuarios registrados: 4
+- Total de productos publicados: 8
+
+Usuario: Ana (anag)
+  - Productos publicados: 2
+  - Mensajes enviados: 1
+  - Mensajes recibidos: 1
+  - Contactos agregados: 1
+
+Usuario: Luis (luism)
+  - Productos publicados: 2
+  - Mensajes enviados: 1
+  - Mensajes recibidos: 1
+  - Contactos agregados: 1
+
+Usuario: Carlos (carlosr)
+  - Productos publicados: 2
+  - Mensajes enviados: 1
+  - Mensajes recibidos: 1
+  - Contactos agregados: 1
+
+Usuario: María (mariap)
+  - Productos publicados: 2
+  - Mensajes enviados: 1
+  - Mensajes recibidos: 1
+  - Contactos agregados: 1
+

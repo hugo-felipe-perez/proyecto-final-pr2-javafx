@@ -1,9 +1,14 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.factory;
+
+import co.edu.uniquindio.marketplace.marketplaceapp.controller.ContactosController;
+import co.edu.uniquindio.marketplace.marketplaceapp.controller.MensajesController;
+import co.edu.uniquindio.marketplace.marketplaceapp.controller.SolicitudesController;
+import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.AdministradorDTO;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.*;
 import co.edu.uniquindio.marketplace.marketplaceapp.utils.DataUtil;
-import co.edu.uniquindio.marketplace.marketplaceapp.controller.ContactosController;
-import co.edu.uniquindio.marketplace.marketplaceapp.controller.SolicitudesController;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ModelFactory {
     private static ModelFactory instance;
@@ -12,13 +17,9 @@ public class ModelFactory {
     private Vendedor usuarioActual;
     private ContactosController contactosController;
     private SolicitudesController solicitudesController;
-    public Vendedor getUsuarioActual() {
-        return usuarioActual;
-    }
+    private MensajesController mensajesController;
+    private List<AdministradorDTO> administradores;
 
-    public void setUsuarioActual(Vendedor usuarioActual) {
-        this.usuarioActual = usuarioActual;
-    }
     private ModelFactory() {
         this.redSocial = RedSocial.getInstance();
         inicializarDatos();
@@ -35,7 +36,39 @@ public class ModelFactory {
         return redSocial;
     }
 
-    // Método para enviar solicitud
+    public Vendedor getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public void setUsuarioActual(Vendedor usuarioActual) {
+        this.usuarioActual = usuarioActual;
+    }
+
+    public void setContactosController(ContactosController controller) {
+        this.contactosController = controller;
+    }
+
+    public ContactosController getContactosController() {
+        return contactosController;
+    }
+
+    public void setSolicitudesController(SolicitudesController controller) {
+        this.solicitudesController = controller;
+    }
+
+    public SolicitudesController getSolicitudesController() {
+        return solicitudesController;
+    }
+
+    public void setMensajesController(MensajesController controller) {
+        this.mensajesController = controller;
+    }
+
+    public MensajesController getMensajesController() {
+        return mensajesController;
+    }
+
+    // Método para enviar solicitudes
     public void enviarSolicitud(Vendedor origen, Vendedor destino) {
         if (origen == null || destino == null) {
             System.out.println("Origen o destino no pueden ser nulos.");
@@ -63,26 +96,36 @@ public class ModelFactory {
         }
     }
 
+    public void enviarMensaje(Vendedor remitente, Vendedor destinatario, String contenido) {
+        if (remitente == null || destinatario == null) {
+            System.out.println("Remitente o destinatario no pueden ser nulos.");
+            return;
+        }
+
+        if (!remitente.getContactos().contains(destinatario)) {
+            System.out.println("No puedes enviar mensajes a un usuario que no es tu contacto.");
+            return;
+        }
+
+        Mensaje mensaje = new Mensaje(remitente, destinatario, contenido);
+        remitente.getMensajesEnviados().add(mensaje);
+        destinatario.getMensajesRecibidos().add(mensaje);
+
+        // Notificación para el destinatario
+        enviarNotificacion(destinatario, "Nuevo mensaje",
+                "Has recibido un mensaje de " + remitente.getNombre());
+
+        System.out.println("Mensaje enviado de " + remitente.getUsername() + " a " + destinatario.getUsername());
+    }
+
     private void enviarNotificacion(Vendedor vendedor, String tipo, String mensaje) {
         vendedor.getNotificaciones().add(new Notificacion(tipo, mensaje, LocalDateTime.now()));
     }
-    public void setContactosController(ContactosController controller) {
-        this.contactosController = controller;
+    public List<AdministradorDTO> getAdministradores() {
+        return DataUtil.cargarAdministradoresIniciales();
     }
 
-    public ContactosController getContactosController() {
-        return contactosController;
-    }
-
-    public void setSolicitudesController(SolicitudesController controller) {
-        this.solicitudesController = controller;
-    }
-
-    public SolicitudesController getSolicitudesController() {
-        return solicitudesController;
-    }
     private void inicializarDatos() {
         redSocial.getVendedores().addAll(DataUtil.cargarVendedoresIniciales());
     }
-
 }

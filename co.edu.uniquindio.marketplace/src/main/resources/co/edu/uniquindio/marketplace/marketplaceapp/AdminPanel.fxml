@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -8,9 +10,9 @@
         <!-- Barra Superior -->
         <HBox layoutX="0" layoutY="0" prefHeight="60" prefWidth="1100" style="-fx-background-color: #4267B2; -fx-padding: 10;">
             <children>
-                <Label text="Marketplace - Panel de Administrador" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" />
+                <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;" text="Marketplace - Panel de Administrador" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="Cerrar Sesión" onAction="#handleCerrarSesion" style="-fx-background-color: #FF5A5F; -fx-text-fill: white; -fx-font-weight: bold;" />
+                <Button onAction="#handleCerrarSesion" style="-fx-background-color: #FF5A5F; -fx-text-fill: white; -fx-font-weight: bold;" text="Cerrar Sesión" />
             </children>
         </HBox>
 
@@ -19,53 +21,61 @@
             <tabs>
                 <!-- Pestaña de Productos -->
                 <Tab closable="false" text="Productos">
-                    <AnchorPane>
-                        <children>
-                            <TableView fx:id="productosTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020">
-                                <columns>
-                                    <TableColumn fx:id="imagenColumn" prefWidth="120" text="Imagen" />
-                                    <TableColumn fx:id="nombreColumn" prefWidth="200" text="Nombre" />
-                                    <TableColumn fx:id="categoriaColumn" prefWidth="200" text="Categoría" />
-                                    <TableColumn fx:id="estadoColumn" prefWidth="150" text="Estado" />
-                                    <TableColumn fx:id="precioColumn" prefWidth="150" text="Precio" />
-                                </columns>
-                            </TableView>
-                        </children>
-                    </AnchorPane>
+                   <content>
+                       <AnchorPane>
+                           <children>
+                               <TableView fx:id="productosTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020">
+                                   <columns>
+                                       <TableColumn fx:id="nombreColumn" prefWidth="200" text="Nombre" />
+                                       <TableColumn fx:id="categoriaColumn" prefWidth="200" text="Categoría" />
+                                       <TableColumn fx:id="estadoColumn" prefWidth="150" text="Estado" />
+                                       <TableColumn fx:id="precioColumn" prefWidth="150" text="Precio" />
+                                   </columns>
+                               </TableView>
+                           </children>
+                       </AnchorPane>
+                   </content>
                 </Tab>
 
                 <!-- Pestaña de Usuarios -->
                 <Tab closable="false" text="Usuarios">
-                    <AnchorPane>
-                        <children>
-                            <TableView fx:id="usuariosTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020">
-                                <columns>
-                                    <TableColumn fx:id="nombreUsuarioColumn" prefWidth="150" text="Nombre" />
-                                    <TableColumn fx:id="apellidosUsuarioColumn" prefWidth="150" text="Apellidos" />
-                                    <TableColumn fx:id="cedulaUsuarioColumn" prefWidth="150" text="Cédula" />
-                                    <TableColumn fx:id="direccionUsuarioColumn" prefWidth="150" text="Dirección" />
-                                    <TableColumn fx:id="usernameColumn" prefWidth="150" text="Usuario" />
-                                    <TableColumn fx:id="passwordnameColumn" prefWidth="150" text="Contraseña" />
-                                    <TableColumn fx:id="rolUsuarioColumn" prefWidth="120" text="Rol" />
-                                </columns>
-                            </TableView>
-                            <HBox spacing="10" layoutX="10" layoutY="420">
-                                <Button text="Agregar Usuario" onAction="#handleAgregarUsuario" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
-                                <Button text="Actualizar Usuario" onAction="#handleActualizarUsuario" style="-fx-background-color: #FFA500; -fx-text-fill: white;" />
-                                <Button text="Eliminar Usuario" onAction="#handleEliminarUsuario" style="-fx-background-color: #FF5A5F; -fx-text-fill: white;" />
-                            </HBox>
-                        </children>
-                    </AnchorPane>
+   <content>
+                       <AnchorPane>
+                           <children>
+                               <TableView fx:id="usuariosTable" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020">
+                                   <columns>
+                                       <TableColumn fx:id="nombreUsuarioColumn" prefWidth="150" text="Nombre" />
+                                       <TableColumn fx:id="apellidosUsuarioColumn" prefWidth="150" text="Apellidos" />
+                                       <TableColumn fx:id="cedulaUsuarioColumn" prefWidth="150" text="Cédula" />
+                                       <TableColumn fx:id="direccionUsuarioColumn" prefWidth="150" text="Dirección" />
+                                       <TableColumn fx:id="usernameColumn" prefWidth="150" text="Usuario" />
+                                       <TableColumn fx:id="passwordnameColumn" prefWidth="150" text="Contraseña" />
+                                       <TableColumn fx:id="rolUsuarioColumn" prefWidth="120" text="Rol" />
+                                   </columns>
+                               </TableView>
+                               <HBox layoutX="10" layoutY="420" spacing="10">
+                                  <children>
+                                      <Button onAction="#handleAgregarUsuario" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Agregar Usuario" />
+                                      <Button onAction="#handleActualizarUsuario" style="-fx-background-color: #FFA500; -fx-text-fill: white;" text="Actualizar Usuario" />
+                                      <Button onAction="#handleEliminarUsuario" style="-fx-background-color: #FF5A5F; -fx-text-fill: white;" text="Eliminar Usuario" />
+                                  </children>
+                               </HBox>
+                           </children>
+                       </AnchorPane>
+   </content>
                 </Tab>
 
                 <!-- Pestaña de Estadísticas -->
                 <Tab closable="false" text="Estadísticas">
-                    <AnchorPane>
-                        <children>
-                            <TextArea fx:id="estadisticasArea" editable="false" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020" style="-fx-border-color: #E0E0E0;" />
-                            <Button layoutX="10" layoutY="420" text="Exportar Estadísticas" onAction="#handleExportarEstadisticas" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
-                        </children>
-                    </AnchorPane>
+   <content>
+                       <AnchorPane>
+                           <children>
+                               <TextArea fx:id="estadisticasArea" editable="false" layoutX="10" layoutY="10" prefHeight="400" prefWidth="1020" style="-fx-border-color: #E0E0E0;" />
+                               <Button layoutX="10" layoutY="420" onAction="#handleExportarEstadisticas" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Exportar Estadísticas" />
+                                <Button layoutX="829.0" layoutY="420.0" onAction="#handleEstadisticasAvanzadas" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Estadisticas Avanzadas" />
+                           </children>
+                       </AnchorPane>
+   </content>
                 </Tab>
             </tabs>
         </TabPane>

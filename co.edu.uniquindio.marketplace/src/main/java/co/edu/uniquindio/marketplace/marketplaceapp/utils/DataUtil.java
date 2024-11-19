@@ -1,5 +1,6 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.utils;
 
+import co.edu.uniquindio.marketplace.marketplaceapp.mapping.dto.AdministradorDTO;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Comentario;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Producto;
 import co.edu.uniquindio.marketplace.marketplaceapp.model.Vendedor;
@@ -12,24 +13,28 @@ import java.util.List;
 import java.util.Objects;
 
 public class DataUtil {
-
+    // Método para cargar administradores iniciales
+    public static List<AdministradorDTO> cargarAdministradoresIniciales() {
+        List<AdministradorDTO> administradores = new ArrayList<>();
+        // Crear un administrador
+        AdministradorDTO admin = new AdministradorDTO("admin", "12345", Rol.ADMINISTRADOR);
+        // Agregar a la lista
+        administradores.add(admin);
+        System.out.println("Administrador cargado: " + admin);
+        return administradores;
+    }
     public static List<Vendedor> cargarVendedoresIniciales() {
         List<Vendedor> vendedores = new ArrayList<>();
-
-        // Administrador
-        Vendedor maestro = new Vendedor("Admin", "Administrador",
-                "000000", "0000000", "admin", "1234", Rol.ADMINISTRADOR);
-
         // Vendedores
         Vendedor vendedor2 = new Vendedor("Ana", "Gómez", "654321", "Calle 2", "anag", "456", Rol.VENDEDOR);
         Vendedor vendedor3 = new Vendedor("Luis", "Martínez", "789012", "Calle 3", "luism", "789", Rol.VENDEDOR);
         Vendedor vendedor4 = new Vendedor("Carlos", "Rodríguez", "456789", "Calle 4", "carlosr", "123", Rol.VENDEDOR);
         Vendedor vendedor5 = new Vendedor("María", "Pérez", "987654", "Calle 5", "mariap", "321", Rol.VENDEDOR);
 
-        // Agregar productos al vendedor1 (Ana)
+        // Agregar productos al vendedor2 (Ana)
         vendedor2.agregarProducto(new Producto(
                 "Teléfono", "Electrónica", 800.0, "Vendido",
-                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/telefono.jpg")).toExternalForm()),
+                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/telefono.png")).toExternalForm()),
                 LocalDateTime.of(2024,11,25,11,32)
         ));
         vendedor2.agregarProducto(new Producto(
@@ -41,7 +46,7 @@ public class DataUtil {
         // Agregar productos al vendedor2 (Luis)
         vendedor3.agregarProducto(new Producto(
                 "Monitor", "Electrónica", 200.0, "Publicado",
-                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/monitor.jpg")).toExternalForm()),
+                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/monitor.png")).toExternalForm()),
                 LocalDateTime.of(2024,11,7,11,32)
         ));
         vendedor3.agregarProducto(new Producto(
@@ -53,7 +58,7 @@ public class DataUtil {
         // Agregar productos al vendedor3 (Carlos)
         Producto laptop = new Producto(
                 "Laptop", "Tecnología", 1500.0, "Publicado",
-                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/laptop.jpg")).toExternalForm()),
+                new Image(Objects.requireNonNull(DataUtil.class.getResource("/images/laptop.png")).toExternalForm()),
                 LocalDateTime.of(2024,11,5,11,32)
         );
         laptop.agregarLike("anag");
@@ -92,8 +97,13 @@ public class DataUtil {
         // Validar solicitudes recibidas
         System.out.println("Solicitudes recibidas por Carlos: " + vendedor4.getSolicitudesRecibidas());
         System.out.println("Solicitudes recibidas por María: " + vendedor5.getSolicitudesRecibidas());
+        // Mensajes iniciales entre contactos
+        System.out.println("Creando mensajes iniciales...");
+        vendedor2.enviarMensaje(vendedor3, "Hola Luis, ¿cómo estás? Me interesa tu monitor.");
+        vendedor3.enviarMensaje(vendedor2, "Hola Ana, está disponible. ¿Te interesa?");
+        vendedor4.enviarMensaje(vendedor5, "Hola María, ¿qué opinas de la nueva impresora?");
+        vendedor5.enviarMensaje(vendedor4, "Hola Carlos, se ve interesante, ¿puedes darme más detalles?");
         // Agregar vendedores a la lista
-        vendedores.add(maestro);
         vendedores.add(vendedor2);
         vendedores.add(vendedor3);
         vendedores.add(vendedor4);

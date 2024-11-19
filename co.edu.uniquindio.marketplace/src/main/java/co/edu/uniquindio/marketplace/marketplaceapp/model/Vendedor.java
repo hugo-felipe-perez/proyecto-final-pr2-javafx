@@ -10,6 +10,8 @@ public class Vendedor extends Usuario {
     private List<Producto> productos;
     private List<Solicitud> solicitudesRecibidas; // Solicitudes enviadas a este vendedor
     private List<Notificacion> notificaciones;
+    private List<Mensaje> mensajesRecibidos;
+    private List<Mensaje> mensajesEnviados;
 
     public Vendedor(String nombre, String apellidos, String cedula, String direccion, String username, String password, Rol rol) {
         super(nombre, apellidos, cedula, direccion, username, password, rol);
@@ -17,6 +19,8 @@ public class Vendedor extends Usuario {
         this.productos = new ArrayList<>();
         this.solicitudesRecibidas = new ArrayList<>();
         this.notificaciones = new ArrayList<>();
+        this.mensajesRecibidos = new ArrayList<>();
+        this.mensajesEnviados = new ArrayList<>();
     }
 
     // Métodos para contactos
@@ -109,5 +113,21 @@ public class Vendedor extends Usuario {
             System.out.println("Solicitud duplicada de " + origen.getUsername());
         }
     }
+    public List<Mensaje> getMensajesRecibidos() {
+        return mensajesRecibidos;
+    }
 
+    public List<Mensaje> getMensajesEnviados() {
+        return mensajesEnviados;
+    }
+
+    public void enviarMensaje(Vendedor destinatario, String contenido) {
+        Mensaje mensaje = new Mensaje(this, destinatario, contenido);
+        this.mensajesEnviados.add(mensaje);
+        destinatario.recibirMensaje(mensaje);
+    }
+
+    public void recibirMensaje(Mensaje mensaje) {
+        this.mensajesRecibidos.add(mensaje);
+    }
 }

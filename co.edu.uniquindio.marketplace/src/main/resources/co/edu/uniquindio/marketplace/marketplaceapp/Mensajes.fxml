@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="646.0" prefWidth="727.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.MensajesController">
+    <top>
+        <HBox spacing="10" style="-fx-padding: 15; -fx-background-color: #2196F3;">
+           <children>
+               <Label style="-fx-font-size: 20; -fx-text-fill: white;" text="📬 Mensajes" />
+               <Region HBox.hgrow="ALWAYS" />
+           </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" style="-fx-padding: 15;">
+           <children>
+               <Label style="-fx-font-size: 16;" text="Mensajes Recibidos" />
+               <ListView fx:id="mensajesListView" />
+           </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #F5F5F5;">
+           <children>
+               <Label style="-fx-font-size: 16;" text="📬📜 Detalle del Mensaje" />
+               <TextArea fx:id="detalleMensajeArea" editable="false" prefHeight="183.0" prefWidth="697.0" wrapText="true" />
+               <TextField fx:id="mensajeField" promptText="Escribe tu mensaje aquí..." />
+               <Button onAction="#handleEnviarMensaje" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Enviar Mensaje" />
+           </children>
+        </VBox>
+    </bottom>
+</BorderPane>

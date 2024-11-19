@@ -1,11 +1,21 @@
 package co.edu.uniquindio.marketplace.marketplaceapp.patrones.decorator;
 
-public abstract class ReporteDecorator {
-    protected ReporteDecorator componente;
+import co.edu.uniquindio.marketplace.marketplaceapp.services.IReporte;
 
-    public ReporteDecorator(ReporteDecorator componente) {
-        this.componente = componente;
+/**
+ * Clase abstracta para implementar el patrón Decorator.
+ * Extiende las funcionalidades de un reporte de manera dinámica.
+ */
+public abstract class ReporteDecorator implements IReporte {
+
+    private final IReporte reporte;
+
+    public ReporteDecorator(IReporte reporte) {
+        this.reporte = reporte;
     }
 
-    public abstract String getContenido();
+    @Override
+    public String generarReporte() {
+        return reporte.generarReporte();
+    }
 }

@@ -9,25 +9,30 @@
 
 <AnchorPane prefHeight="508.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.ProductosController">
     <children>
-        <Label layoutX="20" layoutY="20" text="PRODUCTOS" />
-        <TableView fx:id="productosTable" layoutX="20" layoutY="50" prefHeight="300" prefWidth="600">
+        <ImageView fx:id="productosPanel" fitHeight="535.0" fitWidth="1279.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../images/productos.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="20.0" layoutY="66.0" prefHeight="21.0" prefWidth="394.0" text="PRODUCTOS" textAlignment="CENTER" />
+        <TableView fx:id="productosTable" layoutX="14.0" layoutY="106.0" prefHeight="281.0" prefWidth="589.0">
             <columns>
-                <TableColumn fx:id="nombreColumn" prefWidth="123.0" text="Producto" />
-                <TableColumn fx:id="categoriaColumn" prefWidth="121.0" text="Categoría" />
-                <TableColumn fx:id="precioColumn" prefWidth="83.0" text="Precio" />
-                <TableColumn fx:id="imagenColumn" prefWidth="156.0" text="Imagen" />
-            <TableColumn fx:id="estadoColum" prefWidth="116.0" text="Estado" />
+                <TableColumn fx:id="nombreColumn" prefWidth="160.0" text="Producto" />
+                <TableColumn fx:id="categoriaColumn" prefWidth="173.0" text="Categoría" />
+                <TableColumn fx:id="precioColumn" prefWidth="151.0" text="Precio" />
+                <TableColumn fx:id="estadoColum" prefWidth="104.0" text="Estado" />
             </columns>
         </TableView>
-        <Button layoutX="157.0" layoutY="450.0" onAction="#handleSeleccionarImagen" prefHeight="47.0" prefWidth="179.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Seleccionar Imagen" />
-        <Button layoutX="368.0" layoutY="450.0" onAction="#handlePublicarProducto" prefHeight="47.0" prefWidth="179.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Publicar Producto" />
-        <Button layoutX="575.0" layoutY="450.0" onAction="#handleEliminarProducto" prefHeight="47.0" prefWidth="179.0" style="-fx-text-fill: white; -fx-background-color: #5B8DEF;" text="Eliminar Producto" />
-        <TextField fx:id="nombreField" layoutX="20.0" layoutY="393.0" prefHeight="39.0" prefWidth="209.0" promptText="Nombre del Producto" />
-        <TextField fx:id="categoriaField" layoutX="246.0" layoutY="393.0" prefHeight="39.0" prefWidth="209.0" promptText="Categoría" />
-        <TextField fx:id="precioField" layoutX="477.0" layoutY="393.0" prefHeight="39.0" prefWidth="209.0" promptText="Precio" />
-        <TextField fx:id="imagenPathField" layoutX="701.0" layoutY="393.0" prefHeight="39.0" prefWidth="209.0" promptText="Ruta de Imagen" />
+        <Button layoutX="698.0" layoutY="278.0" onAction="#handleSeleccionarImagen" prefHeight="47.0" prefWidth="179.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Seleccionar Imagen" />
+        <Button layoutX="698.0" layoutY="333.0" onAction="#handlePublicarProducto" prefHeight="47.0" prefWidth="179.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Publicar Producto" />
+        <Button layoutX="698.0" layoutY="387.0" onAction="#handleActualizarProducto" prefHeight="47.0" prefWidth="179.0" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Actualizar Producto" />
+        <Button layoutX="698.0" layoutY="440.0" onAction="#handleEliminarProducto" prefHeight="47.0" prefWidth="179.0" style="-fx-text-fill: white; -fx-background-color: #5B8DEF;" text="Eliminar Producto" />
+        <TextField fx:id="nombreField" layoutX="683.0" layoutY="76.0" prefHeight="39.0" prefWidth="209.0" promptText="Nombre del Producto" />
+        <TextField fx:id="categoriaField" layoutX="683.0" layoutY="127.0" prefHeight="39.0" prefWidth="209.0" promptText="Categoría" />
+        <TextField fx:id="precioField" layoutX="683.0" layoutY="177.0" prefHeight="39.0" prefWidth="209.0" promptText="Precio" />
+        <TextField fx:id="imagenPathField" layoutX="683.0" layoutY="227.0" prefHeight="39.0" prefWidth="209.0" promptText="Ruta de Imagen" />
+        <TextField fx:id="estadoField" layoutX="683.0" layoutY="227.0" prefHeight="39.0" prefWidth="209.0" promptText="Estado" />
         <Label fx:id="mensajeError" layoutX="20" layoutY="450" textFill="red" />
-      <ImageView fitHeight="176.0" fitWidth="224.0" layoutX="680.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="20.0" layoutY="366.0" text="GESTION DE PRODUCTOS" />
+        <Label layoutX="701.0" layoutY="41.0" text="GESTION DE PRODUCTOS" />
     </children>
 </AnchorPane>

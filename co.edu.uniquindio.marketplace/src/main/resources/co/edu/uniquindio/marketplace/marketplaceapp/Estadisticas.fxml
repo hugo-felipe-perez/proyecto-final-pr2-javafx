@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.EstadisticasController">
+<AnchorPane prefHeight="394.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.EstadisticasController">
     <children>
-        <Label text="📊 Panel de Estadísticas Detalladas" layoutX="20" layoutY="20" style="-fx-font-size: 20; -fx-font-weight: bold;" />
-        <TextArea fx:id="estadisticasArea" layoutX="20" layoutY="60" prefWidth="500" prefHeight="300" wrapText="true" style="-fx-background-color: #e3f2fd;" />
-        <Button text="💾 Exportar Estadísticas" layoutX="20" layoutY="380" onAction="#handleExportar" style="-fx-background-color: #43a047; -fx-text-fill: white;" />
-        <Button text="⬅️ Regresar" layoutX="150" layoutY="380" onAction="#handleRegresar" style="-fx-background-color: #1e88e5; -fx-text-fill: white;" />
+      <ImageView fx:id="imageEstadisticas" fitHeight="479.0" fitWidth="751.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../images/EstadisticasPanel.png" />
+         </image>
+      </ImageView>
+        <Label layoutX="26.0" layoutY="25.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="📊 Panel de Estadísticas Detalladas" textFill="WHITE" />
+        <TextArea fx:id="estadisticasArea" layoutX="30.0" layoutY="59.0" prefHeight="315.0" prefWidth="540.0" style="-fx-background-color: #e3f2fd;" wrapText="true" />
+
+        <!-- Botones para generar reportes -->
+        <Button layoutX="582.0" layoutY="129.0" onAction="#handleReporteSimple" style="-fx-background-color: #64b5f6; -fx-text-fill: white;" text=" Reporte Simple" />
+        <Button layoutX="580.0" layoutY="75.0" onAction="#handleReporteDetallado" prefHeight="39.0" prefWidth="151.0" style="-fx-background-color: #1976d2; -fx-text-fill: white;" text=" Reporte Detallado" />
+        <Button layoutX="582.0" layoutY="20.0" onAction="#handleReporteConEstilo" prefHeight="39.0" prefWidth="151.0" style="-fx-background-color: #43a047; -fx-text-fill: white;" text="Reporte con Estilo" />
+
+        <!-- Exportar botón -->
+        <Button layoutX="583.0" layoutY="183.0" onAction="#handleExportar" prefHeight="39.0" prefWidth="151.0" style="-fx-background-color: #ff9800; -fx-text-fill: white;" text="Exportar Estadísticas" />
     </children>
 </AnchorPane>

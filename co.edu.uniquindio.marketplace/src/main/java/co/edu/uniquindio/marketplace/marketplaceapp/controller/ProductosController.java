@@ -48,40 +48,32 @@ public class ProductosController {
     private TextField imagenPathField;
 
     @FXML
+    private TextField estadoField;
+
+    @FXML
     private Label mensajeError;
+    @FXML
+    private ImageView productosPanel;
 
     private ObservableList<Producto> productosList = FXCollections.observableArrayList();
     private ModelFactory modelFactory = ModelFactory.getInstance();
     private Vendedor vendedorActual;
 
+
     @FXML
     public void initialize() {
         // Configurar columnas
+        try {
+            // Configurar la imagen de fondo
+            Image background = new Image(getClass().getResource("/images/productos.png").toExternalForm());
+            productosPanel.setImage(background);
+        } catch (Exception e) {
+            System.err.println("No se pudo cargar la imagen de fondo: " + e.getMessage());
+        }
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         categoriaColumn.setCellValueFactory(new PropertyValueFactory<>("categoria"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
-
-        // Configuración personalizada para mostrar imágenes en la tabla
-        imagenColumn.setCellFactory(column -> new TableCell<Producto, String>() {
-            private final ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(String imagePath, boolean empty) {
-                super.updateItem(imagePath, empty);
-
-                if (empty || imagePath == null || imagePath.isEmpty()) {
-                    setGraphic(null);
-                } else {
-                    try {
-                        Image image = new Image("file:" + imagePath, 50, 50, true, true);
-                        imageView.setImage(image);
-                        setGraphic(imageView);
-                    } catch (Exception e) {
-                        setGraphic(null);
-                    }
-                }
-            }
-        });
+        estadoColum.setCellValueFactory(new PropertyValueFactory<>("estado")); // Configuración de la columna estado
         cargarProductos();
     }
 
@@ -118,6 +110,7 @@ public class ProductosController {
             String categoria = categoriaField.getText();
             String imagenPath = imagenPathField.getText(); // Obtiene la ruta como String
             double precio = Double.parseDouble(precioField.getText());
+            String estado = estadoField.getText(); // Obtiene la ruta como String
             LocalDateTime fechaPublicacion = LocalDateTime.now();
 
             if (nombre.isEmpty() || categoria.isEmpty() || imagenPath.isEmpty()) {
@@ -137,6 +130,7 @@ public class ProductosController {
             categoriaField.clear();
             precioField.clear();
             imagenPathField.clear();
+            estadoField.clear();
             mensajeError.setText("");
 
         } catch (NumberFormatException e) {
@@ -154,6 +148,52 @@ public class ProductosController {
             cargarProductos();
         } else {
             mensajeError.setText("Debe seleccionar un producto para eliminar.");
+        }
+    }
+    @FXML
+    public void handleActualizarProducto() {
+        Producto seleccionado = productosTable.getSelectionModel().getSelectedItem();
+
+        if (seleccionado != null) {
+            try {
+                // Validaciones
+                String nuevoNombre = nombreField.getText();
+                String nuevaCategoria = categoriaField.getText();
+                String nuevoImagenPath = imagenPathField.getText(); // Obtiene la ruta como String
+                double nuevoPrecio = Double.parseDouble(precioField.getText());
+                String nuevoEstado = estadoField.getText();
+
+                if (nuevoNombre.isEmpty() || nuevaCategoria.isEmpty() || nuevoImagenPath.isEmpty()) {
+                    throw new IllegalArgumentException("Todos los campos son obligatorios.");
+                }
+
+                // Crear objeto Image
+                Image nuevaImagen = new Image("file:" + nuevoImagenPath);
+
+                // Actualizar los valores del producto seleccionado
+                seleccionado.setNombre(nuevoNombre);
+                seleccionado.setCategoria(nuevaCategoria);
+                seleccionado.setPrecio(nuevoPrecio);
+                seleccionado.setImagenPath(nuevaImagen);
+                seleccionado.setEstado(nuevoEstado);
+                // Refrescar la tabla para mostrar los cambios
+                productosTable.refresh();
+
+                // Limpiar campos
+                nombreField.clear();
+                categoriaField.clear();
+                precioField.clear();
+                imagenPathField.clear();
+                estadoField.clear();
+                mensajeError.setText("Producto actualizado correctamente.");
+
+            } catch (NumberFormatException e) {
+                mensajeError.setText("El precio debe ser un número válido.");
+            } catch (IllegalArgumentException e) {
+                mensajeError.setText(e.getMessage());
+            }
+        } else {
+            mensajeError.setText("Debe seleccionar un producto para actualizar.");
         }
     }
 }

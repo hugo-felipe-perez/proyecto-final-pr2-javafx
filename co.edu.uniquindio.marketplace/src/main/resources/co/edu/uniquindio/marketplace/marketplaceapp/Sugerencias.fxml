@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SugerenciasController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="co.edu.uniquindio.marketplace.marketplaceapp.controller.SugerenciasController">
     <!-- Barra superior -->
     <top>
         <HBox spacing="10" style="-fx-background-color: #4267B2; -fx-padding: 15;">
-            <Label text="Marketplace" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" />
-            <TextField fx:id="buscarContactoField" promptText="Buscar vendedores..." style="-fx-pref-width: 300;" />
-            <Button text="Buscar" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+           <children>
+               <Label style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Marketplace" />
+               <TextField fx:id="buscarContactoField" promptText="Buscar vendedores..." style="-fx-pref-width: 300;" />
+               <Button style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" text="Buscar" />
+           </children>
         </HBox>
     </top>
 
     <!-- Contenido principal -->
     <center>
         <VBox spacing="15" style="-fx-padding: 20;">
-            <Label text="Sugerencias de Contactos" style="-fx-font-size: 22; -fx-font-weight: bold;" />
-            <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
-                <VBox fx:id="sugerenciasContainer" spacing="15" style="-fx-padding: 10;">
+           <children>
+               <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Sugerencias de Contactos" />
+               <ScrollPane fitToWidth="true" style="-fx-background-color: white;">
+                  <content>
+                      <VBox fx:id="sugerenciasContainer" spacing="15" style="-fx-padding: 10;">
                     <!-- Aquí se agregan dinámicamente los elementos de sugerencia -->
                 </VBox>
-            </ScrollPane>
+                  </content>
+               </ScrollPane>
+           </children>
         </VBox>
     </center>
 
     <!-- Barra lateral -->
     <right>
         <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #F5F5F5; -fx-border-color: #E0E0E0;">
-            <Label text="Contactos" style="-fx-font-size: 16; -fx-font-weight: bold;" />
-            <ListView fx:id="contactosListView" style="-fx-pref-width: 200;" />
+           <children>
+               <Label opacity="0.0" prefHeight="0.0" prefWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Contactos" />
+               <ListView fx:id="contactosListView" opacity="0.0" style="-fx-pref-width: 200;" />
+           </children>
         </VBox>
     </right>
 </BorderPane>

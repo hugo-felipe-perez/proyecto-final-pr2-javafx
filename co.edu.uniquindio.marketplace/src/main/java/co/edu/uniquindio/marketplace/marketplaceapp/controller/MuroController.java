@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -75,10 +76,11 @@ public class MuroController {
     private void configurarColumnas() {
         imagenColumn.setCellValueFactory(cellData -> {
             ImageView imageView = new ImageView(cellData.getValue().getImagenPath());
-            imageView.setFitHeight(50);
-            imageView.setFitWidth(50);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
             return new ReadOnlyObjectWrapper<>(imageView);
         });
+
 
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         categoriaColumn.setCellValueFactory(new PropertyValueFactory<>("categoria"));
