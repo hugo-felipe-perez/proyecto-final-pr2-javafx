@@ -100,10 +100,11 @@ public class MuroController {
     private void cargarMuro() {
         productosMuro.clear();
         if (vendedorActual != null) {
-            productosMuro.addAll(vendedorActual.getProductos());
+            productosMuro.setAll(vendedorActual.getProductos());
             vendedorActual.getContactos().forEach(contacto -> productosMuro.addAll(contacto.getProductos()));
             productosMuro.sort((p1, p2) -> p2.getFechaPublicacion().compareTo(p1.getFechaPublicacion()));
         }
+        muroTable.setItems(productosMuro); // Asigna los productos actualizados
     }
 
     private void cargarContactos() {
@@ -302,5 +303,12 @@ public class MuroController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void handleActualizarTabla(ActionEvent actionEvent) {
+        System.out.println("Actualizando la tabla de productos...");
+        cargarMuro(); // Recarga los productos del muro
+        muroTable.refresh(); // Refresca la tabla para reflejar los cambios
+        System.out.println("Tabla de productos actualizada.");
     }
 }

@@ -125,6 +125,7 @@ public class ModelFactory {
         return DataUtil.cargarAdministradoresIniciales();
     }
 
+
     private void inicializarDatos() {
         redSocial.getVendedores().addAll(DataUtil.cargarVendedoresIniciales());
     }

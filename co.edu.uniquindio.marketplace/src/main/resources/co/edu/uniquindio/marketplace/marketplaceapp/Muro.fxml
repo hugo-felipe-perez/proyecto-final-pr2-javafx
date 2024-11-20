@@ -35,6 +35,8 @@
                 <Button fx:id="verComentariosButton" text="Ver Comentarios" onAction="#handleVerComentarios" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
                 <Button fx:id="verSolicitudesButton" text="Ver Solicitudes" onAction="#handleVerSolicitudes" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
                 <Button fx:id="verTableroButton" text="Ver Tablero" onAction="#handleVerTablero" style="-fx-background-color: #5B8DEF; -fx-text-fill: white;" />
+                <Button fx:id="actualizarTabla" text="Actualizar Tabla" onAction="#handleActualizarTabla" style="-fx-background-color: #00379c; -fx-text-fill: white;" />
+
             </HBox>
         </VBox>
     </center>
